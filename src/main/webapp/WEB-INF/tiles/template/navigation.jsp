@@ -2,3 +2,4 @@
 <li><a href="<spring:url value="/welcome"/>">Home</a></li>
 <li><a href="<spring:url value="/assignment/add"/>">Add Assignment</a></li>
 <li><a href="<spring:url value="/course/add"/>">Add Course</a></li>
+<li><a href="<spring:url value="/course"/>">Show Course</a></li>

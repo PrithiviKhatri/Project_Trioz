@@ -25,9 +25,17 @@ public class Course {
 	private String name;
 	private String description;
 	//private Set<Professor> professors = new HashSet<Professor>();
-	@JoinColumn(name = "assignmentId")
-	@OneToMany(fetch=FetchType.LAZY,cascade = CascadeType.ALL)
+	
+	@OneToMany(fetch=FetchType.EAGER,cascade = CascadeType.ALL)
+	@JoinColumn(name = "courseId")
 	private Set<Assignment> assignments = new HashSet<Assignment>();
+	
+	public Long getCourseId() {
+		return courseId;
+	}
+	public void setCourseId(Long courseId) {
+		this.courseId = courseId;
+	}
 	public String getName() {
 		return name;
 	}

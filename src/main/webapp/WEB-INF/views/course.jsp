@@ -6,7 +6,10 @@
 		<div class="row">
 			<div class="col-md-5">
 					<h3>${course.name}</h3>
+					<p>${course.courseId}</p>
 					<p>${course.description}</p>
+					<spring:url value="/assignment/add" var="addAssignment"></spring:url>
+					<h1><a href="${addAssignment }">Add Assignments</a></h1>
 					
 					<p>
 	 <a href="<spring:url value="/welcome" />" class="btn btn-default">
