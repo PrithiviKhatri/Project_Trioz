@@ -26,6 +26,12 @@ public class Assignment {
 	private Date dueDate;
 	@DateTimeFormat(pattern = "MM-dd-yyyy")
 	private Date submissionDate;
+	public Long getAssignmentId() {
+		return assignmentId;
+	}
+	public void setAssignmentId(Long assignmentId) {
+		this.assignmentId = assignmentId;
+	}
 	public String getTitle() {
 		return title;
 	}

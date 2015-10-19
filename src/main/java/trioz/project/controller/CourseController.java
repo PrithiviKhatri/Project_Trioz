@@ -43,10 +43,8 @@ public class CourseController {
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String saveAssignment(@Valid @ModelAttribute("newCourse") Course course,
 			BindingResult bindResult, RedirectAttributes redirectAttributes, Model model) {
-		System.out.println("here");
-		model.addAttribute(course);
+		model.addAttribute("course",course);
 		if (bindResult.hasErrors()) {
-			System.out.println("Size:" + bindResult.getErrorCount());
 			return "addCourse";
 		}
 		courseService.save(course);
@@ -57,7 +55,7 @@ public class CourseController {
 
 	@RequestMapping(value = "/show", method = RequestMethod.GET)
 	public String showAssignment(SessionStatus sessionStatus) {
-		sessionStatus.setComplete();
+//		sessionStatus.setComplete();
 		return "course";
 
 	}

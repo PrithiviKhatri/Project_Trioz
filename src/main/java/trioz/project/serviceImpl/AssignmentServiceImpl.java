@@ -19,4 +19,19 @@ public class AssignmentServiceImpl implements AssignmentService{
 		return assignmentRepository.save(assignment);
 	}
 
+	@Override
+	public void deleteAssignment(Long assignmentId) {
+		assignmentRepository.delete(assignmentId);;
+	}
+
+	@Override
+	public Assignment updateAssignment(Assignment assignment) {
+		return assignmentRepository.save(assignment);
+	}
+
+	@Override
+	public Assignment getAssignmentById(Long assignmentId) {
+		return assignmentRepository.findOne(assignmentId);
+	}
+
 }
