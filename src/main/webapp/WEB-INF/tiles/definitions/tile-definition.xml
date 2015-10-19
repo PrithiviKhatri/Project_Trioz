@@ -30,4 +30,9 @@
 		<put-attribute name="heading" value="Course"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/views/course.jsp"></put-attribute>
 	</definition>
+	<definition name="enrollStudent" extends="baseLayout">
+		<put-attribute name="title" value="Enroll Student"></put-attribute>
+		<put-attribute name="heading" value="Enroll Student"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/enrollStudent.jsp"></put-attribute>
+	</definition>
 </tiles-definitions>

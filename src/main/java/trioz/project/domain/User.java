@@ -6,6 +6,8 @@ public class User {
 	private String lastName;
 	private String userName;
 	private String password;
+	
+	
 	public Long getUserId() {
 		return userId;
 	}
