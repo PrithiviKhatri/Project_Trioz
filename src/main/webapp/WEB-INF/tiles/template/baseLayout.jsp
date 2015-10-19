@@ -19,17 +19,18 @@
 			<ul>
 				<tiles:insertAttribute name="navigation"></tiles:insertAttribute>
 			</ul>
-			<h3>Assignments</h3>
+			<h3>TrioZ Project</h3>
+			Language: <a href="?language=en_US">English</a> | <a href="?language=np_NPL">Nepali</a>
 		</div>
 		
-		<div class="jumbotron">
+		<%-- <div class="jumbotron">
 			<h1>
 				<tiles:insertAttribute name="heading"></tiles:insertAttribute>
 			</h1>
 			<p>
 				<tiles:insertAttribute name="tagline"></tiles:insertAttribute>
 			</p>
-		</div>
+		</div> --%>
 		
 		<div class="row">
 			<tiles:insertAttribute name="body"></tiles:insertAttribute>
