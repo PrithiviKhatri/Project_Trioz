@@ -16,24 +16,23 @@ import trioz.project.domain.Assignment;
 import trioz.project.service.AssignmentService;
 
 @Controller
-@RequestMapping({"/assignment"})
+@RequestMapping({ "/assignment" })
 public class AssignmentController {
 	@Autowired
 	private AssignmentService assignmentService;
-	@RequestMapping(value={"/add"},method = RequestMethod.GET)
-	public String addAssignment(@ModelAttribute("newAssignment") Assignment assignment,Model model){
+
+	@RequestMapping(value = { "/add" }, method = RequestMethod.GET)
+	public String addAssignment(@ModelAttribute("newAssignment") Assignment assignment, Model model) {
 		return "addAssignment";
 	}
-	
-	@RequestMapping(value="/add",method = RequestMethod.POST)
+
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String saveAssignment(@Valid @ModelAttribute("newAssignment") Assignment assignment,
-			RedirectAttributes redirectAttributes,
-			Model model,
-			BindingResult bindResult){
+			BindingResult bindResult, RedirectAttributes redirectAttributes, Model model) {
 		System.out.println("here");
 		model.addAttribute(assignment);
-		if(bindResult.hasErrors()){
-			System.out.println("Size:"+bindResult.getErrorCount());
+		if (bindResult.hasErrors()) {
+			System.out.println("Size:" + bindResult.getErrorCount());
 			return "addAssignment";
 		}
 		assignmentService.save(assignment);
@@ -41,11 +40,11 @@ public class AssignmentController {
 		model.addAttribute("assignment", assignment);
 		return "redirect:/assignment/show";
 	}
-	
-	@RequestMapping(value="/show", method = RequestMethod.GET)
-	public String showAssignment(SessionStatus sessionStatus){
+
+	@RequestMapping(value = "/show", method = RequestMethod.GET)
+	public String showAssignment(SessionStatus sessionStatus) {
 		sessionStatus.setComplete();
 		return "assignment";
-		
+
 	}
 }
