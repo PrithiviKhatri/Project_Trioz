@@ -3,10 +3,19 @@ package trioz.project.domain;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+//@Entity
 public class Course {
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long courseId;
 	private String name;
 	private String description;
 	private Set<Professor> professors = new HashSet<Professor>();
+	private Set<Assignment> assignments = new HashSet<Assignment>();
 	public String getName() {
 		return name;
 	}
@@ -27,6 +36,16 @@ public class Course {
 	}
 	public void addProfessor(Professor professor){
 		professors.add(professor);
+	}
+	public Set<Assignment> getAssignments() {
+		return assignments;
+	}
+	public void setAssignments(Set<Assignment> assignments) {
+		this.assignments = assignments;
+	}
+	
+	public void addAssignments(Assignment assignment){
+		this.assignments.add(assignment);
 	}
 	
 	
