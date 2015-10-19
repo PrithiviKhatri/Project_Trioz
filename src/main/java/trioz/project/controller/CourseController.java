@@ -12,39 +12,38 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import trioz.project.domain.Assignment;
-import trioz.project.service.AssignmentService;
+import trioz.project.domain.Course;
+import trioz.project.service.CourseService;
 
 @Controller
-@RequestMapping({ "/assignment" })
-public class AssignmentController {
+@RequestMapping({"/course"})
+public class CourseController {
 	@Autowired
-	private AssignmentService assignmentService;
-
-	@RequestMapping(value = { "/add" }, method = RequestMethod.GET)
-	public String addAssignment(@ModelAttribute("newAssignment") Assignment assignment, Model model) {
-		return "addAssignment";
+	private CourseService courseService;
+	@RequestMapping(value="/add",method = RequestMethod.GET)
+	public String addCourseForm(@ModelAttribute("newCourse") Course course, Model model){
+		return "addCourse";
 	}
-
+	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String saveAssignment(@Valid @ModelAttribute("newAssignment") Assignment assignment,
+	public String saveAssignment(@Valid @ModelAttribute("newCourse") Course course,
 			BindingResult bindResult, RedirectAttributes redirectAttributes, Model model) {
 		System.out.println("here");
-		model.addAttribute(assignment);
+		model.addAttribute(course);
 		if (bindResult.hasErrors()) {
 			System.out.println("Size:" + bindResult.getErrorCount());
-			return "addAssignment";
+			return "addCourse";
 		}
-		assignmentService.save(assignment);
-		redirectAttributes.addFlashAttribute("assignment", assignment);
-		model.addAttribute("assignment", assignment);
-		return "redirect:/assignment/show";
+		courseService.save(course);
+		redirectAttributes.addFlashAttribute("course", course);
+		model.addAttribute("course", course);
+		return "redirect:/course/show";
 	}
 
 	@RequestMapping(value = "/show", method = RequestMethod.GET)
 	public String showAssignment(SessionStatus sessionStatus) {
 		sessionStatus.setComplete();
-		return "assignment";
+		return "course";
 
 	}
 }

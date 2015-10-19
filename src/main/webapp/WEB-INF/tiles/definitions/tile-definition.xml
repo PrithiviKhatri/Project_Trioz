@@ -20,4 +20,14 @@
 		<put-attribute name="heading" value="Add Assignment"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/views/addAssignment.jsp"></put-attribute>
 	</definition>
+	<definition name="addCourse" extends="baseLayout">
+		<put-attribute name="title" value="Add Course"></put-attribute>
+		<put-attribute name="heading" value="Add Course"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/addCourse.jsp"></put-attribute>
+	</definition>
+	<definition name="course" extends="baseLayout">
+		<put-attribute name="title" value="Course Detail"></put-attribute>
+		<put-attribute name="heading" value="Course"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/course.jsp"></put-attribute>
+	</definition>
 </tiles-definitions>

@@ -16,8 +16,8 @@ public class Assignment {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long assignmentId;
-	@NotEmpty(message = "What is this laaddd?")
-	@Size(min=2,max=5,message="{Size}")
+	@NotEmpty
+	@Size(min=2,max=15,message="{Size}")
 	private String title;
 	private String description;
 	@DateTimeFormat(pattern = "MM-dd-yyyy")
