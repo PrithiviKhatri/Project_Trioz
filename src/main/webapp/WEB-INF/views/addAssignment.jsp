@@ -7,7 +7,8 @@
 </head>
 <body>
 	<section class="container">
-		<form:form modelAttribute="newAssignment" class="form-horizontal">
+		<spring:url value="/assignment/add" var="save"></spring:url>
+		<form:form modelAttribute="newAssignment" action="${save}" class="form-horizontal">
 			<fieldset>
 				<legend>Add new assignment</legend>
 				<form:errors path="*" cssClass="alert alert-danger" element="div"/>
