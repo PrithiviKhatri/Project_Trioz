@@ -7,8 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 import trioz.project.domain.Course;
 import trioz.project.repository.CourseRepository;
 import trioz.project.service.CourseService;
-//@Service
-//@Transactional
+@Service
+@Transactional
 public class CourseServiceImpl implements CourseService{
 	@Autowired
 	private CourseRepository courseRepository;

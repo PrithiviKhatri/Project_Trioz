@@ -18,8 +18,8 @@ import trioz.project.service.CourseService;
 @Controller
 @RequestMapping({"/course"})
 public class CourseController {
-	//@Autowired
-	//private CourseService courseService;
+	@Autowired
+	private CourseService courseService;
 	@RequestMapping(value="/add",method = RequestMethod.GET)
 	public String addCourseForm(@ModelAttribute("newCourse") Course course, Model model){
 		return "addCourse";
@@ -32,9 +32,9 @@ public class CourseController {
 		model.addAttribute(course);
 		if (bindResult.hasErrors()) {
 			System.out.println("Size:" + bindResult.getErrorCount());
-			return "addAssignment";
+			return "addCourse";
 		}
-		//courseService.save(course);
+		courseService.save(course);
 		redirectAttributes.addFlashAttribute("course", course);
 		model.addAttribute("course", course);
 		return "redirect:/course/show";
