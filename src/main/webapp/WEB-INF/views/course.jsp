@@ -32,6 +32,9 @@
 					<spring:url value="/assignment/add" var="addAssignment"></spring:url>
 					<br><a href="${addAssignment }">Add Assignments</a>
 					
+					<spring:url value="/quiz/add" var="addQuiz"></spring:url>
+					<br><a href="${addQuiz}">Add Quiz</a>
+					
 					<p>
 	 <a href="<spring:url value="/welcome" />" class="btn btn-default">
 							<span class="glyphicon-hand-left glyphicon"></span> back

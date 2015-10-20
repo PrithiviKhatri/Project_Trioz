@@ -41,4 +41,10 @@
 		<put-attribute name="body" value="/WEB-INF/views/courseList.jsp"></put-attribute>
 	
 	</definition>
+	<definition name="addQuiz" extends="baseLayout">
+		<put-attribute name="title" value="Add Quiz"></put-attribute>
+		<put-attribute name="heading" value="Add Quiz"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/addQuiz.jsp"></put-attribute>
+	
+	</definition>
 </tiles-definitions>

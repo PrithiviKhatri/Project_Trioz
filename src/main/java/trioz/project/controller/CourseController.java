@@ -32,7 +32,7 @@ public class CourseController {
 	@RequestMapping(value={"","/list"},method = RequestMethod.GET)
 	public String listCourse(Model model){
 		List<Course> courses = courseService.getAllCourses();
-		System.out.println("size:"+courses.size());
+		System.out.println("Course size:"+courses.size());
 		model.addAttribute("courselist",courses);
 		return "courseList";
 	}
