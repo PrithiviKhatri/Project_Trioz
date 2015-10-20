@@ -17,7 +17,9 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import trioz.project.domain.Course;
+import trioz.project.domain.Student;
 import trioz.project.service.CourseService;
+import trioz.project.service.StudentService;
 
 @Controller
 @RequestMapping({"/course"})
@@ -68,4 +70,5 @@ public class CourseController {
 		return "course";
 
 	}
+	
 }

@@ -42,17 +42,6 @@ public class User implements Serializable {
 	@JoinColumn(name = "student_id")
 	private Student student;
 
-	
-	/*
-	 * @OneToMany(cascade = CascadeType.MERGE)
-	 * 
-	 * @JoinColumn(name = "user_id") private Set<UserRole> roles;
-	 * 
-	 * public Set<UserRole> getRoles() { return roles; }
-	 * 
-	 * public void setRoles(Set<UserRole> roles) { this.roles = roles; }
-	 */
-
 	private String role;
 
 	

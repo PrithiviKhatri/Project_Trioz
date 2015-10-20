@@ -1,6 +1,8 @@
 package trioz.project.domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -11,11 +13,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
-import org.hibernate.engine.FetchTiming;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -23,12 +25,19 @@ public class Course {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long courseId;
+
 	@NotEmpty
 	@Size(min = 5, max = 20, message = "Size")
 	private String name;
 	private String description;
+
 	@ManyToMany
 	private Set<Professor> professors = new HashSet<Professor>();
+
+
+	@ManyToMany
+	private Set<Student> students;
+	
 	@Transient
 	private Set<Quize> quizeList = new HashSet<Quize>();
 
@@ -50,6 +59,13 @@ public class Course {
 
 	public void setCourseId(Long courseId) {
 		this.courseId = courseId;
+	}
+
+	public Set<Student> getStudents() {
+		return students;
+	}
+	public void setStudents(Set<Student> students) {
+		this.students = students;
 	}
 
 	public String getName() {
