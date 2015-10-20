@@ -11,11 +11,11 @@
 					<p>Assignment Lists:</p>
 					<table border="1" style="width:100%">
 							<tr>
-								<td>Title</td>
-								<td>Description</td>
-								<td>AssignDate</td>
-								<td>DueDate</td>
-								<td>Action</td>
+								<th>Title</th>
+								<th>Description</th>
+								<th>AssignDate</th>
+								<th>DueDate</th>
+								<th>Action</th>
 							</tr>
 						<c:forEach items="${course.assignments }" var="assignment">
 							<tr>
@@ -32,6 +32,19 @@
 					<spring:url value="/assignment/add" var="addAssignment"></spring:url>
 					<br><a href="${addAssignment }">Add Assignments</a>
 					
+					<p>Quiz Lists:</p>
+					<table border="1" style="width:100%">
+							<tr>
+								<th>Description</th>
+								<th>Questions</th>
+							</tr>
+							<c:forEach items="${quizeList}" var="quiz">
+								<td>${quiz.description}</td>
+								<td>
+									<c:forEach items="${quiz.question}" var="question">${question }<br></c:forEach>
+								</td>
+							</c:forEach>
+					</table>
 					<spring:url value="/quiz/add" var="addQuiz"></spring:url>
 					<br><a href="${addQuiz}">Add Quiz</a>
 					

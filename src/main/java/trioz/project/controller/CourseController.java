@@ -1,5 +1,6 @@
 package trioz.project.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import trioz.project.domain.Course;
+import trioz.project.domain.Quize;
 import trioz.project.domain.Student;
 import trioz.project.service.CourseService;
 import trioz.project.service.StudentService;
@@ -27,7 +29,6 @@ import trioz.project.service.StudentService;
 public class CourseController {
 	@Autowired
 	private CourseService courseService;
-	
 	
 	@RequestMapping(value={"","/list"},method = RequestMethod.GET)
 	public String listCourse(Model model){
@@ -66,6 +67,15 @@ public class CourseController {
 	public String area(@RequestParam("courseId") Long courseId,Model model) {
 		Course course = courseService.getCourseById(courseId);
 		model.addAttribute("course",course);
+		Quize q = new Quize();
+		q.setDescription("This is a Quize");
+		List<String> question = new ArrayList<String>();
+		question.add("What is waa?");
+		question.add("What is spring?");
+		q.setQuestions(question);
+		List<Quize> qList = new ArrayList<>();
+		qList.add(q);
+		model.addAttribute("quizeList",	qList);
 		return "course";
 
 	}

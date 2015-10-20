@@ -35,7 +35,8 @@ public class Course {
 	@ManyToMany
 	private List<Student> students = new ArrayList<Student>();
 	
-	@Transient
+	@OneToMany
+	@JoinColumn(name = "courseId")
 	private Set<Quize> quizeList = new HashSet<Quize>();
 	public Set<Quize> getQuizeList() {
 		return quizeList;
@@ -91,6 +92,7 @@ public class Course {
 	public void addAssignments(Assignment assignment){
 		this.assignments.add(assignment);
 	}
+	
 
 
 }

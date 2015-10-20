@@ -30,5 +30,13 @@ public class QuizeServiceImpl implements QuizeService{
 		}
 		return q;
 	}
+	/*@Override
+	public List<Quize> getAllQuizeByCourseId(Long courseId) {
+		List<Quize> quizeList = quizeRepository.getAllQuizeByCourseId(courseId);
+		for(Quize q: quizeList){
+			System.out.println("Quiz Desc:"+q.getDescription());
+		}
+		return quizeList;
+	}*/
 
 }
