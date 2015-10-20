@@ -8,7 +8,7 @@ public interface UserService {
 
 	public User saveUser(User user);
 
-	public User UserfindUserById(Long id);
+	public User findUserById(Long id);
 
 	public void deleteUserById(Long userid);
 

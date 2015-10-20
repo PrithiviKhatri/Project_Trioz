@@ -13,9 +13,9 @@ import trioz.project.domain.User;
 import trioz.project.service.UserService;
 
 @Controller
-/*
- * @RequestMapping("/User")
- */public class UserController {
+
+@RequestMapping("/user")
+public class UserController {
 
 	@Autowired
 	UserService userService;
@@ -23,7 +23,7 @@ import trioz.project.service.UserService;
 	@RequestMapping(value = ("/addUser"), method = RequestMethod.GET)
 	public String addUser() {
 		System.out.println("inside add User");
-		return "UserForm";
+		return "addUser";
 
 	}
 
@@ -39,7 +39,7 @@ import trioz.project.service.UserService;
 	@RequestMapping(value = "/deleteUser/{userId}")
 	public String deleteUserbyId(@PathVariable("userId") Long userid, Model model) {
 		System.out.println("inside delete User");
-		User user = userService.UserfindUserById(userid);
+		User user = userService.findUserById(userid);
 		userService.deleteUserById(userid);
 		;
 		model.addAttribute("Message", "Below User has been successfully deleted!!");
@@ -55,5 +55,5 @@ import trioz.project.service.UserService;
 		model.addAttribute("users", users);
 		return "ListUsers";
 	}
-	
+
 }

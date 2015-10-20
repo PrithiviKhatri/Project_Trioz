@@ -8,7 +8,7 @@
 </head>
 <body>
 	<section class="container">
-		<spring:url value="/editProfessorByAdmin" var="edit"></spring:url>
+		<spring:url value="/professor/editProfessorByAdmin" var="edit"></spring:url>
 		<form:form modelAttribute="editProfessor" action="${edit}"
 			class="form-horizontal" method="POST">
 			<form:hidden path="userId" />

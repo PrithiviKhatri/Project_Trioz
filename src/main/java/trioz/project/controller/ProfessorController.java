@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import trioz.project.domain.Course;
 import trioz.project.domain.User;
@@ -21,6 +22,8 @@ import trioz.project.service.CourseService;
 import trioz.project.service.UserService;
 
 @Controller
+@RequestMapping("/professor")
+@SessionAttributes("user")
 public class ProfessorController {
 
 	@Autowired
@@ -29,13 +32,20 @@ public class ProfessorController {
 	UserService userservice;
 	@Autowired
 	CourseService courseservice;
-	
-	 @InitBinder
-	   public void bindForm(final WebDataBinder binder)
-	   {
-	   		 binder.registerCustomEditor(Set.class, "professor.courses",  new CustomFormBinder(courseservice, Set.class));
-	   
-	   }
+
+	@InitBinder
+	public void bindForm(final WebDataBinder binder) {
+		binder.registerCustomEditor(Set.class, "professor.courses", new CustomFormBinder(courseservice, Set.class));
+
+	}
+
+	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
+	public String showProfessorHome(User user, Model model) {
+		User professor = userrepository.findUserByUserName(user.getUserName());
+		model.addAttribute("user", professor);
+		return "ProfessorHome";
+
+	}
 
 	@RequestMapping(value = ("/displayListOfProfessor"), method = RequestMethod.GET)
 	public String listProfessors(Model model) {
@@ -49,7 +59,7 @@ public class ProfessorController {
 	@RequestMapping(value = ("/editProfessorByAdmin/{userId}"), method = RequestMethod.GET)
 	public String editProfessorByAdmin(@PathVariable("userId") Long userId, Model model) {
 		System.out.println("inside edit Professor By Admin");
-		User user = userservice.UserfindUserById(userId);
+		User user = userservice.findUserById(userId);
 		model.addAttribute("editProfessor", user);
 
 		return "editProfessorByAdmin";

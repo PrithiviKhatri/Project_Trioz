@@ -30,7 +30,7 @@
 					<td><c:forEach var="course" items="${user.professor.courses}">
 							<br>${course.name} 
 					</c:forEach></td>
-					<td><spring:url value="/editProfessorByAdmin/{userId}"
+					<td><spring:url value="/professor/editProfessorByAdmin/{userId}"
 							var="edit">
 							<spring:param name="userId" value="${user.userId}" />
 						</spring:url> <a href="${edit}">EditProfessor</a><br /></td>
