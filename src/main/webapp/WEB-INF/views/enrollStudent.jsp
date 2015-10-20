@@ -21,10 +21,9 @@
 				<label class="control-label col-lg-2 col-lg-2" for="course"><spring:message
 						code="enrollStudent.form.course.label" /></label>
 				<div class="col-lg-10">
-					<form:select id="courseList" path="name" items="${courses}"
+					<form:select id="courseList" path="courseId" items="${courses}"
 						itemLabel="name" itemValue="courseId"/>
-						
-						
+											
 					<form:errors path="courseId" cssClass="text-danger" />
 				</div>
 			</div>
@@ -34,13 +33,16 @@
 				<div class="col-lg-10">
 				
 				  <c:forEach items="${students}" var="student" varStatus="i">
-                <form:checkbox path="students[${i.index}]" value="${student}" label="${student.studentId}" />
-                
-             <%--      <c:forEach items="${fooListWrapper.fooList}" varStatus="i">
-           <form:input path="fooList[${i.index}].name" type="text"/>
-    </c:forEach> --%>
-            
+				  <tr>
+								<td><br><form:checkbox path="students"
+										value="${student.studentId}" label="${student.studentId}" /></td>
+								
+								<td><c:out value="${student.level}" /></td>
+							</tr>
+<%--                 <form:checkbox path="students[${i.index}]" value="${student}" label="${student.studentId}" />
+ --%>            
         </c:forEach>
+        
 	
 					<form:errors path="students" cssClass="text-danger" />
 				</div>

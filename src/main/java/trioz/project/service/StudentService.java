@@ -7,5 +7,6 @@ import trioz.project.domain.Student;
 public interface StudentService {
 
 	List<Student> getAll();
-
+	
+	public Student getStudentById(Long studentId);
 }

@@ -25,15 +25,14 @@ public class Course {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long courseId;
 
-//	@NotEmpty
-//	@Size(min=5,max=20,message="Size")
+	@NotEmpty
+	@Size(min=5,max=20,message="Size")
 	private String name;
 	private String description;
 	//private Set<Professor> professors = new HashSet<Professor>();
 
-	@JoinColumn(name = "courseId")
 	@ManyToMany
-	private List<Student> students = new ArrayList<Student>();
+	private Set<Student> students;
 	
 	@Transient
 	private Set<Quize> quizeList = new HashSet<Quize>();
@@ -53,10 +52,10 @@ public class Course {
 	public void setCourseId(Long courseId) {
 		this.courseId = courseId;
 	}
-	public List<Student> getStudents() {
+	public Set<Student> getStudents() {
 		return students;
 	}
-	public void setStudents(List<Student> students) {
+	public void setStudents(Set<Student> students) {
 		this.students = students;
 	}
 

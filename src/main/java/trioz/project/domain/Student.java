@@ -3,6 +3,7 @@ package trioz.project.domain;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -26,16 +27,16 @@ public class Student {
 
 	@NotEmpty
 	private String level;
-	public List<Course> getCourse() {
+	public Set<Course> getCourse() {
 		return course;
 	}
-	public void setCourse(List<Course> course) {
+	public void setCourse(Set<Course> course) {
 		this.course = course;
 	}
 	private Date joinedDate;
 	
 	@ManyToMany
-   	private List<Course> course=new ArrayList<Course>();
+   	private Set<Course> course;
 
 
 	public Long getStudentId() {
