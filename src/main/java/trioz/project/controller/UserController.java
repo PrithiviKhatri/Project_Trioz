@@ -25,6 +25,7 @@ public class UserController {
 		System.out.println("inside add User");
 		return "addUser";
 
+
 	}
 
 	@RequestMapping(value = "/saveUser", method = RequestMethod.POST)
@@ -39,7 +40,9 @@ public class UserController {
 	@RequestMapping(value = "/deleteUser/{userId}")
 	public String deleteUserbyId(@PathVariable("userId") Long userid, Model model) {
 		System.out.println("inside delete User");
+
 		User user = userService.findUserById(userid);
+
 		userService.deleteUserById(userid);
 		;
 		model.addAttribute("Message", "Below User has been successfully deleted!!");

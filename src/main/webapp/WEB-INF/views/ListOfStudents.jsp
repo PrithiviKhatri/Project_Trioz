@@ -5,7 +5,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Professors</title>
+<title>Students</title>
 
 </head>
 <body>
@@ -22,15 +22,15 @@
 				<th>Level</th>
 			</tr>
 
-			<c:forEach var="user" items="${users}">
+			<c:forEach var="userInfo" items="${user}">
 				<tr>
-					<td>${user.firstName}${user.lastName}</td>
-					<td>${user.userName}</td>
-					<td>${user.userId}</td>
+					<td>${userInfo.firstName}${userInfo.lastName}</td>
+					<td>${userInfo.userName}</td>
+					<td>${userInfo.userId}</td>
 					<td>${course.student.courses}</td>
-					<td><spring:url value="/editStudentByAdmin/{userId}"
+					<td><spring:url value="/student/editStudentByAdmin/{userId}"
 							var="edit">
-							<spring:param name="userId" value="${user.userId}" />
+							<spring:param name="userId" value="${userInfo.userId}" />
 						</spring:url> <a href="${edit}">EditStudent</a><br /></td>
 
 

@@ -25,7 +25,7 @@
 <br>
 
 
-<spring:url value="/student/displayListOfStudent" var="listOfStudents">
+<spring:url value="/student/displayListOfStudents" var="listOfStudents">
 </spring:url>
 <a href="${listOfStudents}">List All Students</a>
 <p><b>displays list of students .And also give link to each student to edit information about him</b></p><br />

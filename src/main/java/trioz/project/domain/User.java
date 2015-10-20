@@ -2,7 +2,6 @@ package trioz.project.domain;
 
 import java.io.Serializable;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +15,11 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class User implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -44,7 +48,6 @@ public class User implements Serializable {
 
 	private String role;
 
-	
 	public String getRole() {
 		return role;
 	}

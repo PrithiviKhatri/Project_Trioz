@@ -39,6 +39,10 @@
 		<put-attribute name="title" value="Course List"></put-attribute>
 		<put-attribute name="heading" value="Course List"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/views/courseList.jsp"></put-attribute>
-	
+	</definition>
+		<definition name="editStudent" extends="baseLayout">
+		<put-attribute name="title" value="Edit Student"></put-attribute>
+		<put-attribute name="heading" value="Edit Student"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/editStudentByAdmin.jsp"></put-attribute>
 	</definition>
 </tiles-definitions>
