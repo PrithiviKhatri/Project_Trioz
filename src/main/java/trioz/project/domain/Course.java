@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
 import org.hibernate.engine.FetchTiming;
@@ -25,11 +26,19 @@ public class Course {
 	private String name;
 	private String description;
 	//private Set<Professor> professors = new HashSet<Professor>();
-	
+	@Transient
+	private Set<Quize> quizeList = new HashSet<Quize>();
+	public Set<Quize> getQuizeList() {
+		return quizeList;
+	}
+	public void setQuizeList(Set<Quize> quizeList) {
+		this.quizeList = quizeList;
+	}
 	@OneToMany(fetch=FetchType.EAGER,cascade = CascadeType.ALL)
 	@JoinColumn(name = "courseId")
 	private Set<Assignment> assignments = new HashSet<Assignment>();
 	
+
 	public Long getCourseId() {
 		return courseId;
 	}
