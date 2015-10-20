@@ -23,6 +23,20 @@ public class Course {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long courseId;
+
+//	@NotEmpty
+//	@Size(min=5,max=20,message="Size")
+	private String name;
+	private String description;
+	//private Set<Professor> professors = new HashSet<Professor>();
+	@JoinColumn(name = "courseId")
+	@OneToMany(fetch=FetchType.LAZY,cascade = CascadeType.ALL)
+	private Set<Assignment> assignments = new HashSet<Assignment>();
+
+	@JoinColumn(name = "courseId")
+	@ManyToMany
+	private List<Student> students = new ArrayList<Student>();
+	
 	public Long getCourseId() {
 		return courseId;
 	}
@@ -36,26 +50,6 @@ public class Course {
 		this.students = students;
 	}
 
-	@NotEmpty
-	@Size(min=5,max=20,message="Size")
-	private String name;
-	private String description;
-	//private Set<Professor> professors = new HashSet<Professor>();
-	@JoinColumn(name = "courseId")
-	@OneToMany(fetch=FetchType.LAZY,cascade = CascadeType.ALL)
-	private Set<Assignment> assignments = new HashSet<Assignment>();
-
-	@JoinColumn(name = "courseId")
-//	@OneToMany(fetch=FetchType.LAZY,cascade = CascadeType.ALL)
-	@ManyToMany/*(cascade = {CascadeType.PERSIST, CascadeType.MERGE},mappedBy="course")*/
-	private List<Student> students = new ArrayList<Student>();
-
-	public List<Student> getStudent() {
-		return students;
-	}
-	public void setStudent(List<Student> student) {
-		this.students = student;
-	}
 
 	public String getName() {
 		return name;

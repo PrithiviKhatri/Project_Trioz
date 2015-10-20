@@ -21,8 +21,8 @@
 				<label class="control-label col-lg-2 col-lg-2" for="course"><spring:message
 						code="enrollStudent.form.course.label" /></label>
 				<div class="col-lg-10">
-					<form:select id="courseList" path="courseId" items="${courses}"
-						itemLabel="name" itemValue="courseId" />
+					<form:select id="courseList" path="name" items="${courses}"
+						itemLabel="name" itemValue="courseId"/>
 						
 						
 					<form:errors path="courseId" cssClass="text-danger" />
@@ -32,12 +32,16 @@
 				<label class="control-label col-lg-2 col-lg-2" for="student"><spring:message
 						code="enrollStudent.form.student.label" /></label>
 				<div class="col-lg-10">
-				<form:select<%--  multiple="true" --%> path="students" items="${students}" itemLabel="studentId" itemValue="studentId" />
 				
-				
-				<%-- <form:checkbox id="studentList" items="${students}" path="students" itemValue="studentId" itemLabel="level" value="studentId"/> --%>
-					<%-- <form:select id="studentList" path="students" items="${students}"
-						itemLabel="studentId" itemValue="studentId" /> --%>
+				  <c:forEach items="${students}" var="student" varStatus="i">
+                <form:checkbox path="students[${i.index}]" value="${student}" label="${student.studentId}" />
+                
+             <%--      <c:forEach items="${fooListWrapper.fooList}" varStatus="i">
+           <form:input path="fooList[${i.index}].name" type="text"/>
+    </c:forEach> --%>
+            
+        </c:forEach>
+	
 					<form:errors path="students" cssClass="text-danger" />
 				</div>
 			</div>
