@@ -31,7 +31,7 @@ public class EnrollStudentToCourseController {
 	@ModelAttribute("courses")
 	List<Course> addCourseList(Model model) {
 
-		return  courseService.getAll();
+		return  courseService.getAllCourses();
 
 	}
 

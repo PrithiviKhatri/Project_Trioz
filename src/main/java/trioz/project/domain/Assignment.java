@@ -20,12 +20,25 @@ public class Assignment {
 	@Size(min=2,max=15,message="{Size}")
 	private String title;
 	private String description;
+	private String Answer;
+	public String getAnswer() {
+		return Answer;
+	}
+	public void setAnswer(String answer) {
+		Answer = answer;
+	}
 	@DateTimeFormat(pattern = "MM-dd-yyyy")
 	private Date assignDate;
 	@DateTimeFormat(pattern = "MM-dd-yyyy")
 	private Date dueDate;
 	@DateTimeFormat(pattern = "MM-dd-yyyy")
 	private Date submissionDate;
+	public Long getAssignmentId() {
+		return assignmentId;
+	}
+	public void setAssignmentId(Long assignmentId) {
+		this.assignmentId = assignmentId;
+	}
 	public String getTitle() {
 		return title;
 	}

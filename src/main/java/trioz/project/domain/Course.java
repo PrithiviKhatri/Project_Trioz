@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -29,13 +30,22 @@ public class Course {
 	private String name;
 	private String description;
 	//private Set<Professor> professors = new HashSet<Professor>();
-	@JoinColumn(name = "courseId")
-	@OneToMany(fetch=FetchType.LAZY,cascade = CascadeType.ALL)
-	private Set<Assignment> assignments = new HashSet<Assignment>();
 
 	@JoinColumn(name = "courseId")
 	@ManyToMany
 	private List<Student> students = new ArrayList<Student>();
+	
+	@Transient
+	private Set<Quize> quizeList = new HashSet<Quize>();
+	public Set<Quize> getQuizeList() {
+		return quizeList;
+	}
+	public void setQuizeList(Set<Quize> quizeList) {
+		this.quizeList = quizeList;
+	}
+	@OneToMany(fetch=FetchType.EAGER,cascade = CascadeType.ALL)
+	@JoinColumn(name = "courseId")
+	private Set<Assignment> assignments = new HashSet<Assignment>();
 	
 	public Long getCourseId() {
 		return courseId;
@@ -49,7 +59,6 @@ public class Course {
 	public void setStudents(List<Student> students) {
 		this.students = students;
 	}
-
 
 	public String getName() {
 		return name;

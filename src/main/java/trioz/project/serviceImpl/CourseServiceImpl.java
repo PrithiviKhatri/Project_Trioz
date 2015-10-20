@@ -19,9 +19,13 @@ public class CourseServiceImpl implements CourseService{
 		return courseRepository.save(course);
 	}
 	@Override
-	public List<Course> getAll() {
-		// TODO Auto-generated method stub
+
+	public List<Course> getAllCourses() {
 		return (List<Course>)courseRepository.findAll();
+	}
+	@Override
+	public Course getCourseById(Long courseId) {
+		return courseRepository.findOne(courseId);
 	}
 
 }
