@@ -9,7 +9,6 @@ public class LoginController {
 
 	@RequestMapping(value = {"/"}, method = RequestMethod.GET)
 	public String showAdminHome() {
-		System.out.println("inside show admin Home");
 		return "AdminHome";
 
 	}
