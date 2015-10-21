@@ -5,4 +5,3 @@
 <li><a href="<spring:url value="/enroll/enrollStudent"/>">Enroll Student</a></li>
 <li><a href="<spring:url value="/displayListOfStudents"/>">Edit Student</a></li>
 
-

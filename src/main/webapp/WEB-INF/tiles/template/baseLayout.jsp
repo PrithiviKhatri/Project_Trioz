@@ -11,27 +11,21 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="http://getbootstrap.com/dist/css/bootstrap.css"	rel="stylesheet">
 	<link href="http://getbootstrap.com/examples/jumbotron/jumbotron.css"	rel="stylesheet">
+	<style type="text/css">@import url("<c:url value="/resource/css/style.css"/>");</style>
 	<title><tiles:insertAttribute name="title"></tiles:insertAttribute></title>
 </head>
 <body>
 	<div class="container">
 		<div class="header">
-			<ul>
+			<ul id="navigation">
 				<tiles:insertAttribute name="navigation"></tiles:insertAttribute>
 			</ul>
-			<h3>TrioZ Project</h3>
+			<%-- <img alt="Logo" src="<c:url value="/resource/images/TriozLogo.png"/>"> --%>
+						<div class="clear"></div>
+			
+			<h2>Online Education System</h2>
 			Language: <a href="?language=en_US">English</a> | <a href="?language=np_NPL">Nepali</a>
 		</div>
-		
-		<%-- <div class="jumbotron">
-			<h1>
-				<tiles:insertAttribute name="heading"></tiles:insertAttribute>
-			</h1>
-			<p>
-				<tiles:insertAttribute name="tagline"></tiles:insertAttribute>
-			</p>
-		</div> --%>
-		
 		<div class="row">
 			<tiles:insertAttribute name="body"></tiles:insertAttribute>
 		</div>

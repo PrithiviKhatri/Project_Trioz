@@ -29,8 +29,8 @@
    		<property name="basename" value="messages"/> 
 	</bean>
 	
-	<mvc:resources  location="/resources/"  mapping="/resource/**"/>
-	
+	<mvc:resources  mapping="/resource/**" location="/resources/" />
+	<mvc:resources mapping="/resource/css/**" location="/resources/css/"  />
 	<mvc:interceptors>
  		<bean class= "org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
 			<property name="paramName" value="language"/>
