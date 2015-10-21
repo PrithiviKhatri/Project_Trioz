@@ -38,11 +38,13 @@
 								<th>Description</th>
 								<th>Questions</th>
 							</tr>
-							<c:forEach items="${quizeList}" var="quiz">
+							<c:forEach items="${course.quizeList}" var="quiz">
+							<tr>
 								<td>${quiz.description}</td>
 								<td>
 									<c:forEach items="${quiz.question}" var="question">${question }<br></c:forEach>
 								</td>
+							</tr>
 							</c:forEach>
 					</table>
 					<spring:url value="/quiz/add" var="addQuiz"></spring:url>

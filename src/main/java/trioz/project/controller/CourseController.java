@@ -66,16 +66,15 @@ public class CourseController {
 	@RequestMapping(value = "/area", method = RequestMethod.GET)
 	public String area(@RequestParam("courseId") Long courseId,Model model) {
 		Course course = courseService.getCourseById(courseId);
-		model.addAttribute("course",course);
-		Quize q = new Quize();
-		q.setDescription("This is a Quize");
-		List<String> question = new ArrayList<String>();
-		question.add("What is waa?");
-		question.add("What is spring?");
-		q.setQuestions(question);
+		List<Quize> q1= course.getQuizeList();
+		for(Quize q:q1){
+			System.out.println("Quiz Questions Size:"+q.getQuestion().size());
+			System.out.println("conttroller des:"+q.getDescription());
+		}
 		List<Quize> qList = new ArrayList<>();
-		qList.add(q);
+		qList.addAll(q1);
 		model.addAttribute("quizeList",	qList);
+		model.addAttribute("course",course);
 		return "course";
 
 	}

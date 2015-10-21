@@ -3,13 +3,19 @@ package trioz.project.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 public class Quize {
@@ -18,7 +24,8 @@ public class Quize {
 	private Long quizeId;
 	@Transient
 	private List<String> question = new ArrayList<>();
-public Long getQuizeId() {
+	
+	public Long getQuizeId() {
 		return quizeId;
 	}
 	public void setQuizeId(Long quizeId) {
@@ -30,7 +37,6 @@ public Long getQuizeId() {
 	public void setQuestions(List<String> question) {
 		this.question = question;
 	}
-	//	private List<String> answers;
 	private String grade;
 	private String description;
 	@ManyToOne
@@ -48,13 +54,6 @@ public Long getQuizeId() {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-//	public List<String> getAnswers() {
-//		return answers;
-//	}
-//	public void setAnswers(List<String> answers) {
-//		this.answers = answers;
-//	}
 	public String getGrade() {
 		return grade;
 	}

@@ -35,13 +35,13 @@ public class Course {
 	@ManyToMany
 	private List<Student> students = new ArrayList<Student>();
 	
-	@OneToMany
+	@OneToMany(fetch=FetchType.EAGER,cascade = CascadeType.ALL)
 	@JoinColumn(name = "courseId")
-	private Set<Quize> quizeList = new HashSet<Quize>();
-	public Set<Quize> getQuizeList() {
+	private List<Quize> quizeList;
+	public List<Quize> getQuizeList() {
 		return quizeList;
 	}
-	public void setQuizeList(Set<Quize> quizeList) {
+	public void setQuizeList(List<Quize> quizeList) {
 		this.quizeList = quizeList;
 	}
 	@OneToMany(fetch=FetchType.EAGER,cascade = CascadeType.ALL)
