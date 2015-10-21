@@ -3,6 +3,8 @@ package trioz.project.serviceImpl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,7 +20,9 @@ public class UserServiceImpl implements UserService {
 	UserRepository userRepo;
 
 	public User saveUser(User user) {
-
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String encodedPassword = passwordEncoder.encode(user.getPassword());
+		user.setPassword(encodedPassword);
 		return userRepo.save(user);
 	}
 
@@ -41,6 +45,15 @@ public class UserServiceImpl implements UserService {
 		return userRepo.findOne(id);
 	}
 
-	
+	@Override
+	public List<User> findAllProfessors(String role) {
+		return userRepo.findAllProfessors(role);
+	}
+
+	@Override
+	public User findUserByUserName(String username) {
+
+		return userRepo.findUserByUserName(username);
+	}
 
 }

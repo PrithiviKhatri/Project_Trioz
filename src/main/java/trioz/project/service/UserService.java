@@ -2,6 +2,9 @@ package trioz.project.service;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
 import trioz.project.domain.User;
 
 public interface UserService {
@@ -16,5 +19,9 @@ public interface UserService {
 
 	public void deleteUser(User user);
 
-	//public List<User> findAllProfessors();
+	public List<User> findAllProfessors(String role);
+
+	public User findUserByUserName(String username);
+
 }
+

@@ -2,8 +2,7 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:mvc="http://www.springframework.org/schema/mvc" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
         http://www.springframework.org/schema/beans     
         http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -11,44 +10,58 @@
         http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-       
-    <context:component-scan base-package="trioz.project.controller" />
-	<mvc:annotation-driven validator="validator" />   
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+
+	<context:component-scan base-package="trioz.project.controller" />
+	<mvc:annotation-driven validator="validator" />
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/" />
 		<property name="suffix" value=".jsp" />
-        <property name="order" value="2" />
+		<property name="order" value="2" />
 	</bean>
-        
-    <bean id="tilesViewResolver"   class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-        <property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
-        <property name="order" value="-2" />
+
+	<bean id="tilesViewResolver"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.tiles3.TilesView" />
+		<property name="order" value="-2" />
 	</bean>
-	
-	<bean id= "messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
-   		<property name="basename" value="messages"/> 
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="messages" />
 	</bean>
-	
 	<mvc:resources  mapping="/resource/**" location="/resources/" />
 	<mvc:resources mapping="/resource/css/**" location="/resources/css/"  />
 	<mvc:interceptors>
- 		<bean class= "org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
-			<property name="paramName" value="language"/>
-	 	</bean>	 	
- 	</mvc:interceptors>
- 	
- 	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
-		<property name="defaultLocale" value="en_US"/>
+		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<property name="paramName" value="language" />
+		</bean>
+	</mvc:interceptors>
+
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+		<property name="defaultLocale" value="en_US" />
 	</bean>
-	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+	<bean id="validator"
+		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
 		<property name="validationMessageSource" ref="messageSource" />
 	</bean>
-	
-	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
-        <property name="definitions">
-            <list>
-                <value>/WEB-INF/tiles/definitions/tile-definition.xml</value>
-            </list>
-        </property>
+
+	<bean id="tilesConfigurer"
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tiles/definitions/tile-definition.xml</value>
+			</list>
+		</property>
 	</bean>
- </beans>
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<bean class="trioz.project.interceptor.Logininterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+
+</beans>
