@@ -5,6 +5,7 @@
 	<section class="container">
 		<div class="row">
 			<div class="col-md-5">
+				<h2>Assignment Added Successfully!!</h2>
 					<h3>${assignment.title}</h3>
 					<p>${assignment.description}</p>
 					<p>
@@ -14,7 +15,7 @@
 						<strong>Due Date</strong> : ${assignment.dueDate}
 					</p>
 					<p>
-	 <a href="<spring:url value="/welcome" />" class="btn btn-default">
+	 <a href="<spring:url value="/assignment/add" />" class="btn btn-default">
 							<span class="glyphicon-hand-left glyphicon"></span> back
 						</a>
 	

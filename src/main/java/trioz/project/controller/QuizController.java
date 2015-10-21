@@ -27,18 +27,10 @@ public class QuizController {
 	
 	@RequestMapping(value="/add",method=RequestMethod.POST)
 	public String saveQuiz(@ModelAttribute("newQuiz") Quize quize,Model model){
-		System.out.println("Descriptions:"+quize.getDescription());
-		List<String> quest = quize.getQuestion();
-		System.out.println("Quest Size:"+quest.size());
 		Course c = (Course) model.asMap().get("course");
-		System.out.println("Name:"+c.getName());
-		for(String s:quest){
-			System.out.println(s);
-		}
 		quize.setCourse(c);
 		Quize q = quizeService.save(quize);
 		
-		System.out.println("quizeId:"+q.getQuizeId());
 		return "quize";
 	}
 }

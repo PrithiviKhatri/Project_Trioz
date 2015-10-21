@@ -47,4 +47,14 @@
 		<put-attribute name="body" value="/WEB-INF/views/addQuiz.jsp"></put-attribute>
 	
 	</definition>
+	<definition name="assignment" extends="baseLayout">
+		<put-attribute name="title" value="Assignment added Successfully"></put-attribute>
+		<put-attribute name="heading" value=""></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/assignment.jsp"></put-attribute>
+	</definition>
+	<definition name="quize" extends="baseLayout">
+		<put-attribute name="title" value="Quize added Successfully"></put-attribute>
+		<put-attribute name="heading" value=""></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/quize.jsp"></put-attribute>
+	</definition>
 </tiles-definitions>

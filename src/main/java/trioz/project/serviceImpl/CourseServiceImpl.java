@@ -35,11 +35,9 @@ public class CourseServiceImpl implements CourseService{
 		List<Quize> quizeList = c.getQuizeList();
 		for(int i=0;i<quizeList.size();i++){
 			Quize tmp = quizeList.get(i);
-			System.out.println("service des:"+tmp.getDescription());
 			List<Question> questionList = questionRepository.getAllQuestionsByQuizId(tmp.getQuizeId());
 			List<String> questions = new ArrayList<>(questionList.size());
 			for(Question q: questionList ){
-				System.out.println("=====>>"+q.getQuestion());
 				questions.add(q.getQuestion());
 			}
 			tmp.setQuestions(questions);
