@@ -13,7 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 import javax.validation.constraints.Size;
@@ -38,14 +37,15 @@ public class Course {
 	@ManyToMany
 	private Set<Student> students;
 	
-	@Transient
-	private Set<Quize> quizeList = new HashSet<Quize>();
 
-	public Set<Quize> getQuizeList() {
+	@OneToMany(fetch=FetchType.EAGER,cascade = CascadeType.ALL)
+	@JoinColumn(name = "courseId")
+	private List<Quize> quizeList;
+	public List<Quize> getQuizeList() {
 		return quizeList;
 	}
+	public void setQuizeList(List<Quize> quizeList) {
 
-	public void setQuizeList(Set<Quize> quizeList) {
 		this.quizeList = quizeList;
 	}
 
@@ -103,5 +103,6 @@ public class Course {
 	public void addAssignments(Assignment assignment) {
 		this.assignments.add(assignment);
 	}
+	
 
 }
