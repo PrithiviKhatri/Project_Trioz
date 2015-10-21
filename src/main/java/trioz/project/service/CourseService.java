@@ -11,5 +11,5 @@ public interface CourseService {
 
 	public Course getCourseById(Long courseId);
 
-	public Course getCourseByUserId(Long userId);
+
 }

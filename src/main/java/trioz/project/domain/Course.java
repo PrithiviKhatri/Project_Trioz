@@ -1,6 +1,8 @@
 package trioz.project.domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -15,7 +17,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
-import org.hibernate.engine.FetchTiming;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -23,20 +24,28 @@ public class Course {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long courseId;
+
 	@NotEmpty
 	@Size(min = 5, max = 20, message = "Size")
 	private String name;
 	private String description;
+
 	@ManyToMany
 	private Set<Professor> professors = new HashSet<Professor>();
-	@Transient
-	private Set<Quize> quizeList = new HashSet<Quize>();
 
-	public Set<Quize> getQuizeList() {
+
+	@ManyToMany
+	private Set<Student> students;
+	
+
+	@OneToMany(fetch=FetchType.EAGER,cascade = CascadeType.ALL)
+	@JoinColumn(name = "courseId")
+	private List<Quize> quizeList;
+	public List<Quize> getQuizeList() {
 		return quizeList;
 	}
+	public void setQuizeList(List<Quize> quizeList) {
 
-	public void setQuizeList(Set<Quize> quizeList) {
 		this.quizeList = quizeList;
 	}
 
@@ -50,6 +59,13 @@ public class Course {
 
 	public void setCourseId(Long courseId) {
 		this.courseId = courseId;
+	}
+
+	public Set<Student> getStudents() {
+		return students;
+	}
+	public void setStudents(Set<Student> students) {
+		this.students = students;
 	}
 
 	public String getName() {
@@ -87,5 +103,6 @@ public class Course {
 	public void addAssignments(Assignment assignment) {
 		this.assignments.add(assignment);
 	}
+	
 
 }

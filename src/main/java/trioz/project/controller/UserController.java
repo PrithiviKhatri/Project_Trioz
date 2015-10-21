@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import trioz.project.domain.User;
+import trioz.project.exception.NoUsersExistsException;
 import trioz.project.service.UserService;
 
 @Controller
@@ -39,7 +40,9 @@ public class UserController {
 	@RequestMapping(value = "/deleteUser/{userId}")
 	public String deleteUserbyId(@PathVariable("userId") Long userid, Model model) {
 		System.out.println("inside delete User");
+
 		User user = userService.findUserById(userid);
+
 		userService.deleteUserById(userid);
 		;
 		model.addAttribute("Message", "Below User has been successfully deleted!!");
@@ -51,7 +54,9 @@ public class UserController {
 	public String findAllUsers(Model model) {
 		System.out.println("inside find all users");
 		List<User> users = userService.findAllUsers();
-		System.out.println("users size " + users.size());
+		if (users.isEmpty())
+			throw new NoUsersExistsException();
+
 		model.addAttribute("users", users);
 		return "ListUsers";
 	}

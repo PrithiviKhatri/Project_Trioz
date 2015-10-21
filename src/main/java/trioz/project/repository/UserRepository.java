@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import trioz.project.domain.User;
 
+
+
 @Repository
 public interface UserRepository extends CrudRepository<User, Long> {
 
@@ -17,5 +19,9 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
 	@Query(value = "select u from User u where u.userName = :username")
 	public User findUserByUserName(@Param("username") String username);
-
+	
+	@Query(value = "select u from User u where u.role = :role")
+	public List<User> findAllUserByRole(@Param("role") String role);
+	
+	
 }

@@ -30,9 +30,35 @@
 		<put-attribute name="heading" value="Course"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/views/course.jsp"></put-attribute>
 	</definition>
+	<definition name="enrollStudent" extends="baseLayout">
+		<put-attribute name="title" value="Enroll Student"></put-attribute>
+		<put-attribute name="heading" value="Enroll Student"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/enrollStudent.jsp"></put-attribute>
+	</definition>
 	<definition name="courseList" extends="baseLayout">
 		<put-attribute name="title" value="Course List"></put-attribute>
 		<put-attribute name="heading" value="Course List"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/views/courseList.jsp"></put-attribute>
+	</definition>
+		<definition name="editStudent" extends="baseLayout">
+		<put-attribute name="title" value="Edit Student"></put-attribute>
+		<put-attribute name="heading" value="Edit Student"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/editStudentByAdmin.jsp"></put-attribute>
+	</definition>
+	<definition name="addQuiz" extends="baseLayout">
+		<put-attribute name="title" value="Add Quiz"></put-attribute>
+		<put-attribute name="heading" value="Add Quiz"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/addQuiz.jsp"></put-attribute>
+	
+	</definition>
+	<definition name="assignment" extends="baseLayout">
+		<put-attribute name="title" value="Assignment added Successfully"></put-attribute>
+		<put-attribute name="heading" value=""></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/assignment.jsp"></put-attribute>
+	</definition>
+	<definition name="quize" extends="baseLayout">
+		<put-attribute name="title" value="Quize added Successfully"></put-attribute>
+		<put-attribute name="heading" value=""></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/quize.jsp"></put-attribute>
 	</definition>
 </tiles-definitions>

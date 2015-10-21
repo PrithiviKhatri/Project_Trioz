@@ -26,11 +26,9 @@ public class CourseController {
 	@Autowired
 	private CourseService courseService;
 	
-	
 	@RequestMapping(value={"","/list"},method = RequestMethod.GET)
 	public String listCourse(Model model){
 		List<Course> courses = courseService.getAllCourses();
-		System.out.println("size:"+courses.size());
 		model.addAttribute("courselist",courses);
 		return "courseList";
 	}
@@ -68,4 +66,5 @@ public class CourseController {
 		return "course";
 
 	}
+	
 }

@@ -26,3 +26,4 @@ public interface UserService {
 	public User findUserByUserName(String username);
 
 }
+

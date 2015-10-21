@@ -39,7 +39,7 @@ public class LoginController {
 		case "ROLE_STUDENT":
 			return "StudentHome";
 		}
-		return null; // need to change null to other page
+		return null; // need to change null to other page though dont see any scenario where this even comes to this line
 	}
 
 	@RequestMapping(value = "/loginfailed", method = RequestMethod.GET)
