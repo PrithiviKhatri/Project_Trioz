@@ -64,6 +64,7 @@ public class CourseController {
 	
 	@RequestMapping(value = "/area", method = RequestMethod.GET)
 	public String area(@RequestParam("courseId") Long courseId,Model model) {
+		System.out.println("inside area!!");
 		Course course = courseService.getCourseById(courseId);
 		model.addAttribute("course",course);
 		return "course";

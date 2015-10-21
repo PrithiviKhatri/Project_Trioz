@@ -8,6 +8,8 @@ public interface CourseService {
 	public Course save(Course course);
 
 	public List<Course> getAllCourses();
+
 	public Course getCourseById(Long courseId);
+
 
 }

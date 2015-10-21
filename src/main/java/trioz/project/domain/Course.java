@@ -19,78 +19,89 @@ import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 public class Course {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long courseId;
 
-//	@NotEmpty
-//	@Size(min=5,max=20,message="Size")
+	@NotEmpty
+	@Size(min = 5, max = 20, message = "Size")
 	private String name;
 	private String description;
-	//private Set<Professor> professors = new HashSet<Professor>();
 
-	@JoinColumn(name = "courseId")
 	@ManyToMany
-	private List<Student> students = new ArrayList<Student>();
+	private Set<Professor> professors = new HashSet<Professor>();
+
+
+	@ManyToMany
+	private Set<Student> students;
 	
 	@Transient
 	private Set<Quize> quizeList = new HashSet<Quize>();
+
 	public Set<Quize> getQuizeList() {
 		return quizeList;
 	}
+
 	public void setQuizeList(Set<Quize> quizeList) {
 		this.quizeList = quizeList;
 	}
-	@OneToMany(fetch=FetchType.EAGER,cascade = CascadeType.ALL)
+
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "courseId")
 	private Set<Assignment> assignments = new HashSet<Assignment>();
-	
+
 	public Long getCourseId() {
 		return courseId;
 	}
+
 	public void setCourseId(Long courseId) {
 		this.courseId = courseId;
 	}
-	public List<Student> getStudents() {
+
+	public Set<Student> getStudents() {
 		return students;
 	}
-	public void setStudents(List<Student> students) {
+	public void setStudents(Set<Student> students) {
 		this.students = students;
 	}
 
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	//	public Set<Professor> getProfessors() {
-	//		return professors;
-	//	}
-	//	public void setProfessors(Set<Professor> professors) {
-	//		this.professors = professors;
-	//	}
-	//	public void addProfessor(Professor professor){
-	//		professors.add(professor);
-	//	}
+
+	public Set<Professor> getProfessors() {
+		return professors;
+	}
+
+	public void setProfessors(Set<Professor> professors) {
+		this.professors = professors;
+	}
+
 	public Set<Assignment> getAssignments() {
 		return assignments;
 	}
+
 	public void setAssignments(Set<Assignment> assignments) {
 		this.assignments = assignments;
 	}
 
-	public void addAssignments(Assignment assignment){
+	public void addAssignments(Assignment assignment) {
 		this.assignments.add(assignment);
 	}
-
 
 }
