@@ -30,11 +30,18 @@ public class StudentController {
 	@Autowired
 	CourseService courseService;
 	
+	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
+	public String showStudentHome(User user, Model model) {
+		User student = userRepository.findUserByUserName(user.getUserName());
+		model.addAttribute("user", student);
+		return "StudentHome";
+
+	}
 	
 	@RequestMapping(value = ("/displayListOfStudents"), method = RequestMethod.GET)
 	public String listStudents(Model model) {
 		List<User> users = userRepository.findAllUserByRole("ROLE_STUDENT");
-		model.addAttribute("user", users);
+		model.addAttribute("users", users);
 		return "ListOfStudents";
 
 	}
@@ -53,6 +60,8 @@ public class StudentController {
 
 		User student = userRepository.findOne(user.getUserId());
 		student.setStudent(user.getStudent());
+		
+		System.out.println("THIS IS A STUDENT"+student.getStudent());
 
 		userService.saveUser(student);
 		model.addAttribute("message", "Updated successfully");

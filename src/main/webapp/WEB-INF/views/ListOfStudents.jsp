@@ -22,12 +22,12 @@
 				<th>Level</th>
 			</tr>
 
-			<c:forEach var="userInfo" items="${user}">
+			<c:forEach var="userInfo" items="${users}">
 				<tr>
 					<td>${userInfo.firstName}${userInfo.lastName}</td>
 					<td>${userInfo.userName}</td>
 					<td>${userInfo.userId}</td>
-					<td>${course.student.courses}</td>
+					<td>${userInfo.student.level}</td>
 					<td><spring:url value="/student/editStudentByAdmin/{userId}"
 							var="edit">
 							<spring:param name="userId" value="${userInfo.userId}" />

@@ -23,31 +23,37 @@
 					</div>
 				</div>
 				<div class="form-group">
+					<label class="control-label col-lg-2 col-lg-2" for="lastName">LastName</label>
+					<div class="col-lg-10">
+						<form:input id="lastName" path="lastName" type="text" />
+						<form:errors path="lastName" cssClass="text-danger" />
+					</div>
+				</div>
+				<div class="form-group">
 					<label class="control-label col-lg-2 col-lg-2" for="userName">UserName</label>
 					<div class="col-lg-10">
 						<form:input id="lastName" path="lastName" type="text" />
 						<form:errors path="lastName" cssClass="text-danger" />
 					</div>
 				</div>
-<%-- 
+
 
 				<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2" for="level">Level</label>
-					<div class="col-lg-10">			
-						
-						<form:input id="level" path="level" type="text" />
-						<form:errors path="level" cssClass="text-danger" />
+					<label class="control-label col-lg-2 col-lg-2" for="student.level">Level</label>
+					<div class="col-lg-10">
+
+						<form:input id="student.level" path="student.level" type="text" />
+						<form:errors path="student.level" cssClass="text-danger" />
 
 					</div>
-				</div> --%>
-<%-- 
+				</div>
 
-	<div class="form-group">
-					<label class="control-label col-lg-2 col-lg-2" for="joinedDate">Joined Date</label>
-					<div class="col-lg-10">			
-						
-						<form:input id="joinedDate" path="joinedDate" type="text" />
-						<form:errors path="level" joinedDate="text-danger" />
+
+			<%-- 	<div class="form-group">
+					<label class="control-label col-lg-2 col-lg-2" for="student.joinedDate">Joined Date</label>
+					<div class="col-lg-10">
+						<form:input id="student.joinedDate" path="student.joinedDate" type="text" />
+						<form:errors path="student.joinedDate" cssClass="text-danger" />
 
 					</div>
 				</div> --%>
