@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import trioz.project.exception.NoAssignmentsUnderCourseException;
+import trioz.project.exception.NoCoursesUnderUserException;
 
 //@ControllerAdvice
 public class ControllerExceptionHandler {
@@ -23,5 +24,12 @@ public class ControllerExceptionHandler {
 		return mav;
 	}
 	
-	
+	@ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "No courses assigned to Professor")
+	@ExceptionHandler(NoCoursesUnderUserException.class)
+	public ModelAndView noCoursesUnderProfessor(HttpServletRequest req,  NoAssignmentsUnderCourseException ex){
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("noCourses",ex.getFullMessage());
+		mav.setViewName("coursesNotFoundUnderUser");
+		return mav;
+	}
 }
