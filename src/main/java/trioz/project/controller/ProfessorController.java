@@ -4,20 +4,24 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import trioz.project.domain.Course;
+import trioz.project.domain.Professor;
 import trioz.project.domain.User;
 import trioz.project.formatter.CustomFormBinder;
-import trioz.project.repository.UserRepository;
 import trioz.project.service.CourseService;
 import trioz.project.service.UserService;
 
@@ -26,8 +30,9 @@ import trioz.project.service.UserService;
 @SessionAttributes("user")
 public class ProfessorController {
 
-	@Autowired
-	UserRepository userrepository;
+	/*
+	 * @Autowired UserRepository userrepository;
+	 */
 	@Autowired
 	UserService userservice;
 	@Autowired
@@ -41,7 +46,9 @@ public class ProfessorController {
 
 	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
 	public String showProfessorHome(User user, Model model) {
-		User professor = userrepository.findUserByUserName(user.getUserName());
+		// User professor =
+		// userrepository.findUserByUserName(user.getUserName());
+		User professor = userservice.findUserByUserName(user.getUserName());
 		model.addAttribute("user", professor);
 		return "ProfessorHome";
 
@@ -50,7 +57,9 @@ public class ProfessorController {
 	@RequestMapping(value = ("/displayListOfProfessor"), method = RequestMethod.GET)
 	public String listProfessors(Model model) {
 		System.out.println("inside list of Professor");
-		List<User> users = userrepository.findAllProfessors("ROLE_PROFESSOR");
+		// List<User> users =
+		// userrepository.findAllProfessors("ROLE_PROFESSOR");
+		List<User> users = userservice.findAllProfessors("ROLE_PROFESSOR");
 		model.addAttribute("users", users);
 		return "ListOfProfessors";
 
@@ -70,15 +79,40 @@ public class ProfessorController {
 	public String saveProfessorByAdmin(@ModelAttribute("editProfessor") User user, Model model) {
 		System.out.println("inside save Professor By Admin");
 
-		User professor = userrepository.findOne(user.getUserId());
+		// User professor = userrepository.findOne(user.getUserId());
+		User professor = userservice.findUserById(user.getUserId());
+		System.out.println("user is "+professor);
 		professor.setFirstName(user.getFirstName());
 		professor.setLastName(user.getLastName());
 		professor.setProfessor(user.getProfessor());
 
-		userservice.saveUser(professor);
+		userservice.updateUser(professor);
 		model.addAttribute("message", "Updated successfully");
 		model.addAttribute("user", professor);
 		return "ProfessorDetails";
+	}
+
+	/*
+	 * @RequestMapping(value = "/validateEmployee", method = RequestMethod.POST)
+	 * 
+	 * @ResponseBody
+	 * 
+	 * @ResponseStatus(HttpStatus.OK) public Employee
+	 * validateEmployee(@Valid @RequestBody Employee employee
+	 */
+
+	@RequestMapping(value = ("/saveProfile"), method = RequestMethod.POST)
+	@ResponseBody
+	@ResponseStatus(HttpStatus.OK)
+	public User saveProfile(@RequestBody User usertobeupdated, Model model) {
+		System.out.println("inside save Professor Profile");
+
+		User user = userservice.findUserById(usertobeupdated.getUserId());
+		System.out.println("user is " + user);
+		user.getProfessor().setAcademicQualification(usertobeupdated.getProfessor().getAcademicQualification());
+		user.getProfessor().setExperience(usertobeupdated.getProfessor().getExperience());
+		userservice.saveUser(user);
+		return user;
 	}
 
 	@ModelAttribute("courses")

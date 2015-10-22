@@ -15,6 +15,25 @@
 		<put-attribute name="heading" value="Welcome Page"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/views/welcome.jsp"></put-attribute>
 	</definition>
+	
+	<definition name="AdminHome" extends="baseLayout">
+		<put-attribute name="title" value="Admin Control"></put-attribute>
+		<put-attribute name="heading" value="Welcome Admin!!"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/AdminHome.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="StudentHome" extends="baseLayout">
+		<put-attribute name="title" value="Student Control"></put-attribute>
+		<put-attribute name="heading" value="Welcome Student!!"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/StudentHome.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="ProfessorHome" extends="baseLayout">
+		<put-attribute name="title" value="Professor Control"></put-attribute>
+		<put-attribute name="heading" value="Welcome ProfessorHome!!"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/ProfessorHome.jsp"></put-attribute>
+	</definition>
+	
 	<definition name="addAssignment" extends="baseLayout">
 		<put-attribute name="title" value="Add Assignment"></put-attribute>
 		<put-attribute name="heading" value="Add Assignment"></put-attribute>

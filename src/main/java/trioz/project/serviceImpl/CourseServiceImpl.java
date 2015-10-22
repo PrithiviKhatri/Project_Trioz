@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,7 +21,9 @@ public class CourseServiceImpl implements CourseService{
 	private CourseRepository courseRepository;
 	@Autowired
 	private QuestionRepository questionRepository;
+	
 	@Override
+  	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public Course save(Course course) {
 		return courseRepository.save(course);
 	}

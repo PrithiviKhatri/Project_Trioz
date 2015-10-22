@@ -35,7 +35,7 @@
 							<h1>${Role.role}</h1>
 						</c:forEach></td> --%>
 					<td>${user.role}</td>
-					<td><spring:url value="/deleteUser/{userId}" var="Delete">
+					<td><spring:url value="/user/deleteUser/{userId}" var="Delete">
 							<spring:param name="userId" value="${user.userId}" />
 						</spring:url> <a href="${Delete}">DeleteUser</a><br /></td>
 

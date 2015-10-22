@@ -10,6 +10,13 @@
 <br />
 <br>
 
+<spring:url value="/user/listUsers" var="listUsers">
+</spring:url>
+<a href="${listUsers}">List All User</a>
+<p><b>See the list of all the available Users</b></p><br />
+
+<br />
+<br>
 
 
 <%-- <spring:url value="/updateProfessor" var="updateProfessorUrl" >

@@ -3,6 +3,7 @@ package trioz.project.serviceImpl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	UserRepository userRepo;
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public User saveUser(User user) {
 		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String encodedPassword = passwordEncoder.encode(user.getPassword());
@@ -26,6 +28,7 @@ public class UserServiceImpl implements UserService {
 		return userRepo.save(user);
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void deleteUser(User user) {
 		userRepo.delete(user);
 
@@ -36,6 +39,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void deleteUserById(Long userid) {
 		userRepo.delete(userid);
 	}
@@ -54,6 +58,12 @@ public class UserServiceImpl implements UserService {
 	public User findUserByUserName(String username) {
 
 		return userRepo.findUserByUserName(username);
+	}
+
+	@Override
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	public User updateUser(User user) {
+		return userRepo.save(user);
 	}
 
 }
