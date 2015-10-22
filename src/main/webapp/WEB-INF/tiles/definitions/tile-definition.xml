@@ -121,5 +121,5 @@
 		<put-attribute name="title" value="Quize added Successfully"></put-attribute>
 		<put-attribute name="heading" value=""></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/views/quize.jsp"></put-attribute>
-	</definition>
+		</definition>
 </tiles-definitions>

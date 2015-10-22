@@ -13,13 +13,14 @@
 		<h2>List of Students</h2>
 
 
-		<table>
+		<table border="1" style="width: 100%">
 			<tr>
 
 				<th>Name</th>
 				<th>UserName</th>
 				<th>UserID</th>
 				<th>Level</th>
+				<th>Action</th>
 			</tr>
 
 			<c:forEach var="userInfo" items="${users}">

@@ -10,10 +10,11 @@
 <title>Admin</title>
 </head>
 <body>
-<spring:url value="/user/saveUser" var="saveuser">
-</spring:url>
+	<spring:url value="/user/saveUser" var="saveuser">
+	</spring:url>
 	<section class="container">
-		<form:form modelAttribute="newUser" action="${saveuser}" class="form-horizontal" method="POST">
+		<form:form modelAttribute="newUser" action="${saveuser}"
+			class="form-horizontal" method="POST">
 			<fieldset>
 				<legend>Add new User</legend>
 
@@ -21,11 +22,11 @@
 
 				<div class="form-group">
 					<label class="control-label col-lg-2" for="firstName">First
-						Name</label>
+						 Name</label>
 					<div class="col-lg-10">
 						<form:input id="firstName" path="firstName" type="text"
 							class="input-large" />
-							<form:errors  path="firstName"  cssClass="text-danger"/>
+						<form:errors path="firstName" cssClass="text-danger" />
 					</div>
 				</div>
 
@@ -35,8 +36,8 @@
 					<div class="col-lg-10">
 						<form:input id="lastName" path="lastName" type="text"
 							class="input-large" />
-						<form:errors  path="lastName"  cssClass="text-danger"/>
-							
+						<form:errors path="lastName" cssClass="text-danger" />
+
 					</div>
 				</div>
 
@@ -50,8 +51,8 @@
 						<div class="input-prepend">
 							<form:input id="username" path="userName" type="text"
 								class="input-large" />
-						<form:errors  path="userName" cssClass="text-danger" />
-								
+							<form:errors path="userName" cssClass="text-danger" />
+
 						</div>
 					</div>
 				</div>
@@ -62,8 +63,8 @@
 					<div class="col-lg-10">
 						<div class="input-prepend">
 							<form:password id="password" path="password" class="input-large" />
-												<form:errors  path="password" cssClass="text-danger" />
-						
+							<form:errors path="password" cssClass="text-danger" />
+
 						</div>
 					</div>
 				</div>
@@ -75,9 +76,11 @@
 							<!-- <input type="checkbox" name="roles" /> ROLE_STUDENT <br>
 							<input type="checkbox" name="role_professor" /> ROLE_PROFESSOR
  -->
-							<form:radiobutton  path="role" value="ROLE_STUDENT" />ROLE_STUDENT<br>
-							<form:radiobutton  path="role" value="ROLE_PROFESSOR"/>ROLE_PROFESSOR
-<form:errors  path="role"  cssClass="text-danger"/>
+							<form:radiobutton path="role" value="ROLE_STUDENT" />
+							ROLE_STUDENT<br>
+							<form:radiobutton path="role" value="ROLE_PROFESSOR" />
+							ROLE_PROFESSOR
+							<form:errors path="role" cssClass="text-danger" />
 						</div>
 					</div>
 				</div>

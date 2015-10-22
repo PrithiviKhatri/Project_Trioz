@@ -39,15 +39,16 @@
 						<b>Choose the courses:</b>
 						<%-- 						<form:checkboxes path="professor.courses" items="${courses}" />
  --%>
-						<c:forEach items="${courses}" var="course" varStatus="status">
-							<tr>
-								<td><br><form:checkbox path="professor.courses"
-										value="${course.courseId}" label="${course.courseId}" /></td>
-								
-								<td><c:out value="${course.name}" /></td>
-							</tr>
-						</c:forEach>
+						<table>
+							<c:forEach items="${courses}" var="course" varStatus="status">
+								<tr>
+									<td><form:checkbox path="professor.courses"
+											value="${course.courseId}" /></td>
 
+									<td><c:out value="${course.name}" /></td>
+								</tr>
+							</c:forEach>
+						</table>
 						<form:errors path="professor.courses" cssClass="text-danger" />
 
 					</div>
