@@ -10,3 +10,4 @@
 <c:forEach items="${menuItems }" var="menuItem" >
 	<li><a href="<spring:url value="${menuItem.value }"/>">${menuItem.key}</a></li>
 </c:forEach>
+

@@ -5,6 +5,7 @@
 <link href="http://getbootstrap.com/examples/jumbotron/jumbotron.css"	rel="stylesheet">
 
 		<div class="jumbotron">
+			
 			<h1>
 				<tiles:insertAttribute name="heading" />
 			</h1>

@@ -22,7 +22,7 @@
 			</ul>
 			<%-- <img alt="Logo" src="<c:url value="/resource/images/TriozLogo.png"/>"> --%>
 						<div class="clear"></div>
-			
+			<i>${user.userName } is currently logged In!</i> <a href="#">logout</a>
 			<h2>Online Education System</h2>
 			Language: <a href="?language=en_US">English</a> | <a href="?language=np_NPL">Nepali</a>
 		</div>
