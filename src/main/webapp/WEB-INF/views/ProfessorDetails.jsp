@@ -16,7 +16,7 @@
 		<h5>Details:</h5>
 		user Name: ${user.firstName} ${user.lastName}<br />
 
-		<spring:url value="/" var="home">
+		<spring:url value="/welcome" var="home">
 		</spring:url>
 		<form action="${home}" method="get">
 			<input id="submit" type="submit" value="Home">

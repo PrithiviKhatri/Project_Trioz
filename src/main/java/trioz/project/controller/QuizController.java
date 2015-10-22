@@ -16,7 +16,7 @@ import trioz.project.service.QuizeService;
 
 @Controller
 @RequestMapping({"/quiz"})
-@SessionAttributes({"course"})
+@SessionAttributes({"user","course"})
 public class QuizController {
 	@Autowired
 	private QuizeService quizeService;

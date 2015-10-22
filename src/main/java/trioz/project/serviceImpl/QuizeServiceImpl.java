@@ -20,7 +20,7 @@ public class QuizeServiceImpl implements QuizeService{
 	@Autowired
 	private QuestionRepository questionRepository;
 	@Override
-  	@PreAuthorize("hasRole('ROLE_PROFESSOR')")
+  	//@PreAuthorize("hasRole('ROLE_PROFESSOR')")
 	public Quize save(Quize quize) {
 		Quize q = quizeRepository.save(quize);
 		List<String> questions = quize.getQuestion();

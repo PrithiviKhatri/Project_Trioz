@@ -46,7 +46,6 @@ public class ProfessorController {
 
 	}
 
-	@PreAuthorize("hasRole('ROLE_PROFESSOR')")
 	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
 	public String showProfessorHome(User user, Model model) {
 		if (!SessionCheck.isUserExistsInSessionExists(model)) {
@@ -58,7 +57,6 @@ public class ProfessorController {
 		return "ProfessorHome";
 
 	}
-
 	@RequestMapping(value = ("/displayListOfProfessor"), method = RequestMethod.GET)
 	public String listProfessors(Model model) {
 		System.out.println("inside list of Professor");
@@ -87,7 +85,6 @@ public class ProfessorController {
 
 	}
 
-	@PreAuthorize("hasRole('ROLE_PROFESSOR)")
 	@RequestMapping(value = ("/editProfessorByAdmin"), method = RequestMethod.POST)
 	public String saveProfessorByAdmin(@ModelAttribute("editProfessor") User user, Model model) {
 		System.out.println("inside save Professor By Admin");

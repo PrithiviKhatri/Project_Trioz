@@ -22,19 +22,17 @@ import trioz.project.service.CourseService;
 
 @Controller
 @RequestMapping({ "/assignment" })
-@SessionAttributes({"course"})
+@SessionAttributes({"user","course"})
 public class AssignmentController {
 	@Autowired
 	private AssignmentService assignmentService;
 	@Autowired CourseService courseService;
 
-	@PreAuthorize("hasRole('ROLE_PROFESSOR')")
 	@RequestMapping(value = { "/add" }, method = RequestMethod.GET)
 	public String addAssignment(@ModelAttribute("newAssignment") Assignment assignment, Model model) {
 		return "addAssignment";
 	}
 
-	@PreAuthorize("hasRole('ROLE_PROFESSOR')")
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String saveAssignment(@Valid @ModelAttribute("newAssignment") Assignment assignment,
 			BindingResult bindResult, RedirectAttributes redirectAttributes, Model model) {

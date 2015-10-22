@@ -21,7 +21,7 @@ import trioz.project.service.CourseService;
 
 @Controller
 @RequestMapping({"/course"})
-@SessionAttributes({"course"})
+@SessionAttributes({"user","course"})
 public class CourseController {
 	@Autowired
 	private CourseService courseService;

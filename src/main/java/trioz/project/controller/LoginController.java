@@ -42,6 +42,7 @@ public class LoginController {
 		switch (user.getRole()) {
 		case "ROLE_ADMIN":
 			menuItems = new HashMap<>();
+			menuItems.put("Home", "/welcome");
 			menuItems.put("Add User", "/user/addUser");
 			menuItems.put("List User", "/user/listUsers");
 			menuItems.put("List Professor", "/professor/displayListOfProfessor");

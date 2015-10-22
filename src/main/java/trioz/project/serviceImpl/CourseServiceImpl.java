@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import trioz.project.domain.Course;
 import trioz.project.domain.Question;
 import trioz.project.domain.Quize;
+import trioz.project.repository.AssignmentRepository;
 import trioz.project.repository.CourseRepository;
 import trioz.project.repository.QuestionRepository;
 import trioz.project.service.CourseService;

@@ -34,6 +34,12 @@
 		<put-attribute name="body" value="/WEB-INF/views/addUser.jsp"></put-attribute>
 	</definition>
 	
+	<definition name="UserSavedSuccess" extends="baseLayout">
+		<put-attribute name="title" value="UserDetails"></put-attribute>
+		<put-attribute name="heading" value="UserDetails!!"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/UserSavedSuccess.jsp"></put-attribute>
+	</definition>
+	
 	<definition name="ListUsers" extends="baseLayout">
 		<put-attribute name="title" value="User List"></put-attribute>
 		<put-attribute name="heading" value="User List!!"></put-attribute>
@@ -45,6 +51,18 @@
 		<put-attribute name="heading" value="Professors List!!"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/views/ListOfProfessors.jsp"></put-attribute>
 	</definition>
+	
+	<definition name="editProfessorByAdmin" extends="baseLayout">
+		<put-attribute name="title" value="EditProfessorByAdmin"></put-attribute>
+		<put-attribute name="heading" value="EditProfessorByAdmin!"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/editProfessorByAdmin.jsp"></put-attribute>
+	</definition>
+	
+	<!-- <definition name="ProfessorDetails" extends="baseLayout">
+		<put-attribute name="title" value="ProfessorDetails"></put-attribute>
+		<put-attribute name="heading" value="ProfessorDetails!"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/ProfessorDetails.jsp"></put-attribute>
+	</definition> -->
 	
 	<definition name="ListOfStudents" extends="baseLayout">
 		<put-attribute name="title" value="Students List"></put-attribute>

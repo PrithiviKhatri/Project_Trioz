@@ -27,7 +27,12 @@ public class UserController {
 	UserService userService;
 
 	@RequestMapping(value = ("/addUser"), method = RequestMethod.GET)
-	public String addUser() {
+	public String addUser(@ModelAttribute("newUser") User newUser, Model model) {
+		
+		if (!SessionCheck.isUserExistsInSessionExists(model)) {
+			System.out.println("inside session check");
+			return "redirect:/logout";
+		}
 		System.out.println("inside add User");
 		return "addUser";
 
@@ -35,16 +40,16 @@ public class UserController {
 
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(value = "/saveUser", method = RequestMethod.POST)
-	public String saveUser(User user, Model model) {
+	public String saveUser(@ModelAttribute("newUser")User newUser,Model model) {
 		System.out.println("inside save User");
-		System.out.println("user is " + user);
+		System.out.println("user is " + newUser);
 		if (!SessionCheck.isUserExistsInSessionExists(model)) {
 			System.out.println("inside session check");
 			return "redirect:/logout";
 		}
-		userService.saveUser(user);
+		userService.saveUser(newUser);
 		model.addAttribute("Message", "Below User has been successfully saved!!");
-		return "UserDetails";
+		return "UserSavedSuccess";
 	}
 
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -61,7 +66,7 @@ public class UserController {
 		;
 		model.addAttribute("Message", "Below User has been successfully deleted!!");
 		model.addAttribute("user", user);
-		return "UserDetails";
+		return "UserSavedSuccess";
 	}
 
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
