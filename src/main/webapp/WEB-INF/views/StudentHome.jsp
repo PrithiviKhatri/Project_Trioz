@@ -6,7 +6,7 @@
 <html>
 <%-- <script type="text/javascript" src="<spring:url value="/resource/js/ajax.js"/>"></script>
  --%>
-<h3>Welcome Professor ${user.firstName}</h3>
+<h3>Welcome Student ${user.firstName}</h3>
 <br>
 <br>
 <%-- <form>
@@ -15,11 +15,11 @@
 </form> --%>
 <br>
 <br>
-<h3>Courses taught</h3>
+<h3>Courses Enrolled</h3>
 <table>
 	<tr>
 		<c:choose>
-			<c:when test="${not empty {user.professor.courses}}">
+			<c:when test="${not empty {user.student.courses}}">
 				<c:forEach var="course" items="${user.professor.courses}">
 					<spring:url value="/course/aea?courseId=${course.courseId}"
 						var="showcourse">
@@ -32,7 +32,7 @@
 
 
 			<c:otherwise>
-				<font color="red">Currently no courses not assigned to Professor</font> 
+				<font color="red">Currently no courses not assigned to Student</font> 
         <br>
 				<br />
 			</c:otherwise>

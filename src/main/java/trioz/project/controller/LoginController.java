@@ -16,7 +16,7 @@ import trioz.project.service.UserService;
 import trioz.project.utility.SessionCheck;
 
 @Controller
-@SessionAttributes(value={"user","menuItems"})
+@SessionAttributes(value = { "user", "menuItems" })
 public class LoginController {
 
 	@Autowired
@@ -31,7 +31,7 @@ public class LoginController {
 	@RequestMapping(value = "/welcome", method = RequestMethod.GET)
 	public String welcome(Model model) {
 		System.out.println("inside welcome method");
-		Map<String,String> menuItems;
+		Map<String, String> menuItems;
 		if (!SessionCheck.isUserExistsInSessionExists(model)) {
 			System.out.println("inside session check");
 			return "redirect:/logout";
@@ -49,13 +49,10 @@ public class LoginController {
 			menuItems.put("List Student", "/student/displayListOfStudents");
 			menuItems.put("Add Course", "/course/add");
 			menuItems.put("List Course", "/course");
-			model.addAttribute("menuItems",menuItems);
+			model.addAttribute("menuItems", menuItems);
 			return "AdminHome";
 		case "ROLE_PROFESSOR":
 			menuItems = new HashMap<>();
-			menuItems.put("Add Course", "/course/add");
-			menuItems.put("List Course", "/course");
-			model.addAttribute("menuItems",menuItems);
 			return "ProfessorHome";
 		case "ROLE_STUDENT":
 			return "StudentHome";
@@ -73,10 +70,10 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(Model model,SessionStatus status) {
+	public String logout(Model model, SessionStatus status) {
 		System.out.println("inside logout");
 		status.setComplete();
-		System.out.println("user is "+model.asMap().get("user"));
+		System.out.println("user is " + model.asMap().get("user"));
 		return "redirect:/login";
 	}
 

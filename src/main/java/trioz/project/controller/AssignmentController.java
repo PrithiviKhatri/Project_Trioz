@@ -19,28 +19,38 @@ import trioz.project.domain.Assignment;
 import trioz.project.domain.Course;
 import trioz.project.service.AssignmentService;
 import trioz.project.service.CourseService;
+import trioz.project.utility.SessionCheck;
 
 @Controller
 @RequestMapping({ "/assignment" })
-@SessionAttributes({"user","course"})
+@SessionAttributes({ "user", "course" })
 public class AssignmentController {
 	@Autowired
 	private AssignmentService assignmentService;
-	@Autowired CourseService courseService;
+	@Autowired
+	CourseService courseService;
 
 	@RequestMapping(value = { "/add" }, method = RequestMethod.GET)
 	public String addAssignment(@ModelAttribute("newAssignment") Assignment assignment, Model model) {
+		if (!SessionCheck.isUserExistsInSessionExists(model)) {
+			System.out.println("inside session check");
+			return "redirect:/logout";
+		}
 		return "addAssignment";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String saveAssignment(@Valid @ModelAttribute("newAssignment") Assignment assignment,
 			BindingResult bindResult, RedirectAttributes redirectAttributes, Model model) {
+		if (!SessionCheck.isUserExistsInSessionExists(model)) {
+			System.out.println("inside session check");
+			return "redirect:/logout";
+		}
 		model.addAttribute(assignment);
 		if (bindResult.hasErrors()) {
 			return "addAssignment";
 		}
-		Course course = (Course)model.asMap().get("course");
+		Course course = (Course) model.asMap().get("course");
 		course.addAssignments(assignment);
 		courseService.save(course);
 		redirectAttributes.addFlashAttribute("assignment", assignment);
@@ -54,26 +64,39 @@ public class AssignmentController {
 		return "assignment";
 
 	}
-	
+
 	@RequestMapping(value = "/delete/{courseId}/{assignmentId}", method = RequestMethod.GET)
-	public String showAssignment(@PathVariable("courseId") Long courseId,@PathVariable("assignmentId") Long assignmentId) {
+	public String showAssignment(@PathVariable("courseId") Long courseId,
+			@PathVariable("assignmentId") Long assignmentId, Model model) {
+		if (!SessionCheck.isUserExistsInSessionExists(model)) {
+			System.out.println("inside session check");
+			return "redirect:/logout";
+		}
 		assignmentService.deleteAssignment(assignmentId);
-		return "redirect:/course/area?courseId="+courseId;
+		return "redirect:/course/area?courseId=" + courseId;
 	}
-	
+
 	@PreAuthorize("hasRole('ROLE_PROFESSOR')")
 	@RequestMapping(value = "/edit/{assignmentId}", method = RequestMethod.GET)
-	public String updateForm(@PathVariable("assignmentId") Long assignmentId,Model model) {
+	public String updateForm(@PathVariable("assignmentId") Long assignmentId, Model model) {
+		if (!SessionCheck.isUserExistsInSessionExists(model)) {
+			System.out.println("inside session check");
+			return "redirect:/logout";
+		}
 		Assignment toBeUpdated = assignmentService.getAssignmentById(assignmentId);
-		model.addAttribute("updateAssignment",toBeUpdated);
-		System.out.println("toBeUpdated-id:"+toBeUpdated.getAssignmentId());
+		model.addAttribute("updateAssignment", toBeUpdated);
+		System.out.println("toBeUpdated-id:" + toBeUpdated.getAssignmentId());
 		return "editAssignment";
 	}
-	
+
 	@PreAuthorize("hasRole('ROLE_PROFESSOR')")
 	@RequestMapping(value = "/saveUpdate", method = RequestMethod.POST)
-	public String updateAssignment(@ModelAttribute("updateAssignment") Assignment assignment) {
-		System.out.println("id:"+assignment.getAssignmentId());
+	public String updateAssignment(@ModelAttribute("updateAssignment") Assignment assignment, Model model) {
+		if (!SessionCheck.isUserExistsInSessionExists(model)) {
+			System.out.println("inside session check");
+			return "redirect:/logout";
+		}
+		System.out.println("id:" + assignment.getAssignmentId());
 		assignmentService.save(assignment);
 		return "assignment";
 	}

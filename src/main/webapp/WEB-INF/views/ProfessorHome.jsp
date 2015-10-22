@@ -21,7 +21,7 @@
 		<c:choose>
 			<c:when test="${not empty {user.professor.courses}}">
 				<c:forEach var="course" items="${user.professor.courses}">
-					<spring:url value="/course/aea?courseId=${course.courseId}"
+					<spring:url value="/course/area?courseId=${course.courseId}"
 						var="showcourse">
 					</spring:url>
 					<a href="${showcourse}">${course.name}</a>

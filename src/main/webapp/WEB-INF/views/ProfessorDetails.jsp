@@ -14,8 +14,11 @@
 		<h4>${Message}</h4>
 		<p>
 		<h5>Details:</h5>
-		user Name: ${user.firstName} ${user.lastName}<br />
-
+		Full Name: ${user.firstName} ${user.lastName}<br /><br> Courses Taught :
+		<c:forEach var="course" items="${user.professor.courses}">
+			<br>
+			<br>${course.name} 
+					</c:forEach>
 		<spring:url value="/welcome" var="home">
 		</spring:url>
 		<form action="${home}" method="get">
