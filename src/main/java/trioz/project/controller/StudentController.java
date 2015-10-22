@@ -1,6 +1,5 @@
 package trioz.project.controller;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +15,12 @@ import trioz.project.domain.User;
 import trioz.project.repository.UserRepository;
 import trioz.project.service.CourseService;
 import trioz.project.service.UserService;
+import trioz.project.utility.SessionCheck;
 
 @Controller
 @RequestMapping("/student")
 @SessionAttributes("user")
 public class StudentController {
-
 
 	@Autowired
 	UserRepository userRepository;
@@ -29,17 +28,25 @@ public class StudentController {
 	UserService userService;
 	@Autowired
 	CourseService courseService;
-	
+
 	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
 	public String showStudentHome(User user, Model model) {
+		if (!SessionCheck.isUserExistsInSessionExists(model)) {
+			System.out.println("inside session check");
+			return "redirect:/logout";
+		}
 		User student = userRepository.findUserByUserName(user.getUserName());
 		model.addAttribute("user", student);
 		return "StudentHome";
 
 	}
-	
+
 	@RequestMapping(value = ("/displayListOfStudents"), method = RequestMethod.GET)
 	public String listStudents(Model model) {
+		if (!SessionCheck.isUserExistsInSessionExists(model)) {
+			System.out.println("inside session check");
+			return "redirect:/logout";
+		}
 		List<User> users = userRepository.findAllUserByRole("ROLE_STUDENT");
 		model.addAttribute("users", users);
 		return "ListOfStudents";
@@ -48,6 +55,10 @@ public class StudentController {
 
 	@RequestMapping(value = ("/editStudentByAdmin/{userId}"), method = RequestMethod.GET)
 	public String editStudentByAdmin(@PathVariable("userId") Long userId, Model model) {
+		if (!SessionCheck.isUserExistsInSessionExists(model)) {
+			System.out.println("inside session check");
+			return "redirect:/logout";
+		}
 		User user = userService.findUserById(userId);
 		model.addAttribute("editStudent", user);
 
@@ -57,11 +68,14 @@ public class StudentController {
 
 	@RequestMapping(value = ("/editStudentByAdmin"), method = RequestMethod.POST)
 	public String saveStudentByAdmin(@ModelAttribute("editStudent") User user, Model model) {
-
+		if (!SessionCheck.isUserExistsInSessionExists(model)) {
+			System.out.println("inside session check");
+			return "redirect:/logout";
+		}
 		User student = userRepository.findOne(user.getUserId());
 		student.setStudent(user.getStudent());
-		
-		System.out.println("THIS IS A STUDENT"+student.getStudent());
+
+		System.out.println("THIS IS A STUDENT" + student.getStudent());
 
 		userService.saveUser(student);
 		model.addAttribute("message", "Updated successfully");

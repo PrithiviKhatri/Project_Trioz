@@ -12,6 +12,7 @@
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 	<context:component-scan base-package="trioz.project.controller" />
+
 	<mvc:annotation-driven validator="validator" />
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -59,7 +60,7 @@
 	</bean>
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/**" />
+			<mvc:mapping path="/welcome" />
 			<bean class="trioz.project.interceptor.Logininterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>

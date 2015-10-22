@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -24,6 +25,7 @@ import trioz.project.domain.User;
 import trioz.project.formatter.CustomFormBinder;
 import trioz.project.service.CourseService;
 import trioz.project.service.UserService;
+import trioz.project.utility.SessionCheck;
 
 @Controller
 @RequestMapping("/professor")
@@ -44,10 +46,13 @@ public class ProfessorController {
 
 	}
 
+	@PreAuthorize("hasRole('ROLE_PROFESSOR')")
 	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
 	public String showProfessorHome(User user, Model model) {
-		// User professor =
-		// userrepository.findUserByUserName(user.getUserName());
+		if (!SessionCheck.isUserExistsInSessionExists(model)) {
+			System.out.println("inside session check");
+			return "redirect:/logout";
+		}
 		User professor = userservice.findUserByUserName(user.getUserName());
 		model.addAttribute("user", professor);
 		return "ProfessorHome";
@@ -57,8 +62,11 @@ public class ProfessorController {
 	@RequestMapping(value = ("/displayListOfProfessor"), method = RequestMethod.GET)
 	public String listProfessors(Model model) {
 		System.out.println("inside list of Professor");
-		// List<User> users =
-		// userrepository.findAllProfessors("ROLE_PROFESSOR");
+		if (!SessionCheck.isUserExistsInSessionExists(model)) {
+			System.out.println("inside session check");
+			return "redirect:/logout";
+		}
+
 		List<User> users = userservice.findAllProfessors("ROLE_PROFESSOR");
 		model.addAttribute("users", users);
 		return "ListOfProfessors";
@@ -67,6 +75,10 @@ public class ProfessorController {
 
 	@RequestMapping(value = ("/editProfessorByAdmin/{userId}"), method = RequestMethod.GET)
 	public String editProfessorByAdmin(@PathVariable("userId") Long userId, Model model) {
+		if (!SessionCheck.isUserExistsInSessionExists(model)) {
+			System.out.println("inside session check");
+			return "redirect:/logout";
+		}
 		System.out.println("inside edit Professor By Admin");
 		User user = userservice.findUserById(userId);
 		model.addAttribute("editProfessor", user);
@@ -75,13 +87,17 @@ public class ProfessorController {
 
 	}
 
+	@PreAuthorize("hasRole('ROLE_PROFESSOR)")
 	@RequestMapping(value = ("/editProfessorByAdmin"), method = RequestMethod.POST)
 	public String saveProfessorByAdmin(@ModelAttribute("editProfessor") User user, Model model) {
 		System.out.println("inside save Professor By Admin");
-
+		if (!SessionCheck.isUserExistsInSessionExists(model)) {
+			System.out.println("inside session check");
+			return "redirect:/logout";
+		}
 		// User professor = userrepository.findOne(user.getUserId());
 		User professor = userservice.findUserById(user.getUserId());
-		System.out.println("user is "+professor);
+		System.out.println("user is " + professor);
 		professor.setFirstName(user.getFirstName());
 		professor.setLastName(user.getLastName());
 		professor.setProfessor(user.getProfessor());
@@ -92,21 +108,13 @@ public class ProfessorController {
 		return "ProfessorDetails";
 	}
 
-	/*
-	 * @RequestMapping(value = "/validateEmployee", method = RequestMethod.POST)
-	 * 
-	 * @ResponseBody
-	 * 
-	 * @ResponseStatus(HttpStatus.OK) public Employee
-	 * validateEmployee(@Valid @RequestBody Employee employee
-	 */
 
-	@RequestMapping(value = ("/saveProfile"), method = RequestMethod.POST)
+	/*@RequestMapping(value = ("/saveProfile"), method = RequestMethod.POST)
 	@ResponseBody
 	@ResponseStatus(HttpStatus.OK)
 	public User saveProfile(@RequestBody User usertobeupdated, Model model) {
 		System.out.println("inside save Professor Profile");
-
+		
 		User user = userservice.findUserById(usertobeupdated.getUserId());
 		System.out.println("user is " + user);
 		user.getProfessor().setAcademicQualification(usertobeupdated.getProfessor().getAcademicQualification());
@@ -114,7 +122,7 @@ public class ProfessorController {
 		userservice.saveUser(user);
 		return user;
 	}
-
+*/
 	@ModelAttribute("courses")
 	public List<Course> getAllCourses() {
 		return courseservice.getAllCourses();
