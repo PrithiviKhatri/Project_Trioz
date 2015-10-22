@@ -3,6 +3,7 @@ package trioz.project.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -27,11 +28,13 @@ public class AssignmentController {
 	private AssignmentService assignmentService;
 	@Autowired CourseService courseService;
 
+	@PreAuthorize("hasRole('ROLE_PROFESSOR')")
 	@RequestMapping(value = { "/add" }, method = RequestMethod.GET)
 	public String addAssignment(@ModelAttribute("newAssignment") Assignment assignment, Model model) {
 		return "addAssignment";
 	}
 
+	@PreAuthorize("hasRole('ROLE_PROFESSOR')")
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String saveAssignment(@Valid @ModelAttribute("newAssignment") Assignment assignment,
 			BindingResult bindResult, RedirectAttributes redirectAttributes, Model model) {
@@ -60,6 +63,7 @@ public class AssignmentController {
 		return "redirect:/course/area?courseId="+courseId;
 	}
 	
+	@PreAuthorize("hasRole('ROLE_PROFESSOR')")
 	@RequestMapping(value = "/edit/{assignmentId}", method = RequestMethod.GET)
 	public String updateForm(@PathVariable("assignmentId") Long assignmentId,Model model) {
 		Assignment toBeUpdated = assignmentService.getAssignmentById(assignmentId);
@@ -68,6 +72,7 @@ public class AssignmentController {
 		return "editAssignment";
 	}
 	
+	@PreAuthorize("hasRole('ROLE_PROFESSOR')")
 	@RequestMapping(value = "/saveUpdate", method = RequestMethod.POST)
 	public String updateAssignment(@ModelAttribute("updateAssignment") Assignment assignment) {
 		System.out.println("id:"+assignment.getAssignmentId());

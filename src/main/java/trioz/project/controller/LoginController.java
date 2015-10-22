@@ -1,8 +1,6 @@
 package trioz.project.controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import trioz.project.domain.User;
 import trioz.project.service.UserService;
+import trioz.project.utility.SessionCheck;
 
 @Controller
 @SessionAttributes(value={"user","menuItems"})
@@ -33,6 +32,10 @@ public class LoginController {
 	public String welcome(Model model) {
 		System.out.println("inside welcome method");
 		Map<String,String> menuItems;
+		if (!SessionCheck.isUserExistsInSessionExists(model)) {
+			System.out.println("inside session check");
+			return "redirect:/logout";
+		}
 		User user = userservice.findUserByUserName(model.asMap().get("user").toString());
 		System.out.println("user is " + user);
 		model.addAttribute("user", user);
@@ -56,7 +59,8 @@ public class LoginController {
 		case "ROLE_STUDENT":
 			return "StudentHome";
 		}
-		return null; // need to change null to other page though dont see any scenario where this even comes to this line
+		return null; // need to change null to other page though dont see any
+						// scenario where this even comes to this line
 	}
 
 	@RequestMapping(value = "/loginfailed", method = RequestMethod.GET)
@@ -68,8 +72,10 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(Model model, SessionStatus status) {
+	public String logout(Model model,SessionStatus status) {
+		System.out.println("inside logout");
 		status.setComplete();
+		System.out.println("user is "+model.asMap().get("user"));
 		return "redirect:/login";
 	}
 
