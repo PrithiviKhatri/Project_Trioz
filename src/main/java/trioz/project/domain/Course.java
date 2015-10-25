@@ -26,7 +26,7 @@ public class Course {
 	private Long courseId;
 
 	@NotEmpty
-	@Size(min = 5, max = 20, message = "Size")
+	@Size(min = 5, max = 50, message = "Size")
 	private String name;
 	private String description;
 

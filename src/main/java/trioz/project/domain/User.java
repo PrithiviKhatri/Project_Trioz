@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class User implements Serializable {
@@ -27,15 +30,22 @@ public class User implements Serializable {
 	private Long userId;
 
 	@Column(name = "FirstName")
+	@NotEmpty
+	@Size(min=2,max=10)
 	private String firstName;
 
 	@Column(name = "LastName")
+	@NotEmpty
+	@Size(min=2 ,max=10)
 	private String lastName;
 
 	@Column(name = "UserName")
+	@NotEmpty
+	@Size(min=2 ,max=10 )
 	private String userName;
 
 	@Column(name = "Password")
+	@NotEmpty
 	private String password;
 
 	@OneToOne(cascade = CascadeType.ALL)
@@ -45,13 +55,13 @@ public class User implements Serializable {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "student_id")
 	private Student student;
-
+	@NotEmpty
 	private String role;
 
 	public String getRole() {
 		return role;
 	}
-
+	@NotEmpty
 	public void setRole(String role) {
 		this.role = role;
 	}
@@ -115,8 +125,11 @@ public class User implements Serializable {
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", firstName=" + firstName + ", lastName=" + lastName + ", userName="
-				+ userName + "]";
+				+ userName + ", password=" + password + ", role=" + role + "]";
 	}
+
+	
+	
 
 	
 

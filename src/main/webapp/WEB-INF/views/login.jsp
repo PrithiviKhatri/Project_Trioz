@@ -6,13 +6,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet"	href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-<title>Products</title>
+<title>ProjectTrioz</title>
 </head>
 <body>
 	<section>
 		<div class="jumbotron">
-			<div class="container">
-				<h3>Welcome to Learning Management System </h3>
+			<div class="container" style="text-align:center" >
+				<h3>Welcome to Online Education System </h3>
 			</div>
 		</div>
 	</section>
@@ -21,7 +21,7 @@
 		<div class="col-md-4 col-md-offset-4">
     		<div class="panel panel-default">
 			  	<div class="panel-heading">
-			    	<h3 class="panel-title">Please sign in</h3>
+			    	<h3 class="panel-title"><b>Sign In</b></h3>
 			 	</div>
 			  	<div class="panel-body">
 			  	<c:if test="${not empty error}">
@@ -37,7 +37,7 @@
 			    		<div class="form-group">
 			    			<input class=" form:input-large" placeholder="Password" name='password'  type="password" value="">
 			    		</div>
-			    		<input class="btn btn-lg btn-success btn-mini" type="submit" value="Login">
+			    		<input class="" type="submit" value="Login">
 			    	</fieldset>
 			      	</form>
 			    </div>

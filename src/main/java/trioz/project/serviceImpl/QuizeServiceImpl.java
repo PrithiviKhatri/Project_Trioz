@@ -3,6 +3,7 @@ package trioz.project.serviceImpl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +20,7 @@ public class QuizeServiceImpl implements QuizeService{
 	@Autowired
 	private QuestionRepository questionRepository;
 	@Override
+  	//@PreAuthorize("hasRole('ROLE_PROFESSOR')")
 	public Quize save(Quize quize) {
 		Quize q = quizeRepository.save(quize);
 		List<String> questions = quize.getQuestion();

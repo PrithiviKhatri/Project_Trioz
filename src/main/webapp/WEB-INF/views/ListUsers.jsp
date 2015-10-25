@@ -15,11 +15,10 @@
 		<h2>List of Users</h2>
 
 
-		<table>
+		<table border="1" style="width: 100%">
 			<tr>
 
 				<th>Name</th>
-				<th>Phone</th>
 				<th>UserName</th>
 				<th>UserID</th>
 				<th>UserRole</th>
@@ -31,18 +30,11 @@
 					<td>${user.firstName}${user.lastName}</td>
 					<td>${user.userName}</td>
 					<td>${user.userId}</td>
-					<%-- <td><c:forEach items="${user.roles}" var="Role">
-							<h1>${Role.role}</h1>
-						</c:forEach></td> --%>
 					<td>${user.role}</td>
-					<td><spring:url value="/deleteUser/{userId}" var="Delete">
+					<td><spring:url value="/user/deleteUser/{userId}" var="Delete">
 							<spring:param name="userId" value="${user.userId}" />
-						</spring:url> <a href="${Delete}">DeleteUser</a><br /></td>
-
-
-
+						</spring:url> <a href="${Delete}">DeleteUser</a></td>
 				</tr>
-				<br>
 			</c:forEach>
 
 

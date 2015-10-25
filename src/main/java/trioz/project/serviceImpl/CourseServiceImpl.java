@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import trioz.project.domain.Course;
 import trioz.project.domain.Question;
 import trioz.project.domain.Quize;
+import trioz.project.repository.AssignmentRepository;
 import trioz.project.repository.CourseRepository;
 import trioz.project.repository.QuestionRepository;
 import trioz.project.service.CourseService;
@@ -20,7 +22,9 @@ public class CourseServiceImpl implements CourseService{
 	private CourseRepository courseRepository;
 	@Autowired
 	private QuestionRepository questionRepository;
+	
 	@Override
+  	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public Course save(Course course) {
 		return courseRepository.save(course);
 	}

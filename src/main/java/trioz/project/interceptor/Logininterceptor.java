@@ -17,9 +17,11 @@ public class Logininterceptor extends HandlerInterceptorAdapter {
 		Principal principal = request.getUserPrincipal();
 		System.out.println("in prehandle");
 		if (principal != null) {
-			System.out.println("name is " + principal.getName());
-			HttpSession session = request.getSession();
-			session.setAttribute("user", principal.getName());
+				System.out.println("name is " + principal.getName());
+				HttpSession session = request.getSession();
+				session.setAttribute("user", principal.getName());
+			
+
 		}
 
 		return true;

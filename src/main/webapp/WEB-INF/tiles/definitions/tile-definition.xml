@@ -15,6 +15,67 @@
 		<put-attribute name="heading" value="Welcome Page"></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/views/welcome.jsp"></put-attribute>
 	</definition>
+	
+	<definition name="AdminHome" extends="baseLayout">
+		<put-attribute name="title" value="Admin Control"></put-attribute>
+		<put-attribute name="heading" value="Welcome Admin!!"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/AdminHome.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="StudentHome" extends="baseLayout">
+		<put-attribute name="title" value="Student Control"></put-attribute>
+		<put-attribute name="heading" value="Welcome Student!!"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/StudentHome.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="addUser" extends="baseLayout">
+		<put-attribute name="title" value="User Add"></put-attribute>
+		<put-attribute name="heading" value="User Add!!"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/addUser.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="UserSavedSuccess" extends="baseLayout">
+		<put-attribute name="title" value="UserDetails"></put-attribute>
+		<put-attribute name="heading" value="UserDetails!!"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/UserSavedSuccess.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="ListUsers" extends="baseLayout">
+		<put-attribute name="title" value="User List"></put-attribute>
+		<put-attribute name="heading" value="User List!!"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/ListUsers.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="ListOfProfessors" extends="baseLayout">
+		<put-attribute name="title" value="Professors List"></put-attribute>
+		<put-attribute name="heading" value="Professors List!!"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/ListOfProfessors.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="editProfessorByAdmin" extends="baseLayout">
+		<put-attribute name="title" value="EditProfessorByAdmin"></put-attribute>
+		<put-attribute name="heading" value="EditProfessorByAdmin!"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/editProfessorByAdmin.jsp"></put-attribute>
+	</definition>
+	
+	<!-- <definition name="ProfessorDetails" extends="baseLayout">
+		<put-attribute name="title" value="ProfessorDetails"></put-attribute>
+		<put-attribute name="heading" value="ProfessorDetails!"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/ProfessorDetails.jsp"></put-attribute>
+	</definition> -->
+	
+	<definition name="ListOfStudents" extends="baseLayout">
+		<put-attribute name="title" value="Students List"></put-attribute>
+		<put-attribute name="heading" value="Students List!!"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/ListOfStudents.jsp"></put-attribute>
+	</definition>
+	
+	<definition name="ProfessorHome" extends="baseLayout">
+		<put-attribute name="title" value="Professor Control"></put-attribute>
+		<put-attribute name="heading" value="Welcome ProfessorHome!!"></put-attribute>
+		<put-attribute name="body" value="/WEB-INF/views/ProfessorHome.jsp"></put-attribute>
+	</definition>
+	
 	<definition name="addAssignment" extends="baseLayout">
 		<put-attribute name="title" value="Add Assignment"></put-attribute>
 		<put-attribute name="heading" value="Add Assignment"></put-attribute>
@@ -60,5 +121,5 @@
 		<put-attribute name="title" value="Quize added Successfully"></put-attribute>
 		<put-attribute name="heading" value=""></put-attribute>
 		<put-attribute name="body" value="/WEB-INF/views/quize.jsp"></put-attribute>
-	</definition>
+		</definition>
 </tiles-definitions>

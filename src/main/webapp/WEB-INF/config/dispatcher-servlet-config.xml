@@ -12,6 +12,7 @@
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 	<context:component-scan base-package="trioz.project.controller" />
+
 	<mvc:annotation-driven validator="validator" />
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -31,9 +32,8 @@
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basename" value="messages" />
 	</bean>
-
-	<mvc:resources location="/resources/" mapping="/resource/**" />
-
+	<mvc:resources  mapping="/resource/**" location="/resources/" />
+	<mvc:resources mapping="/resource/css/**" location="/resources/css/"  />
 	<mvc:interceptors>
 		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
 			<property name="paramName" value="language" />
@@ -59,7 +59,7 @@
 	</bean>
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/**" />
+			<mvc:mapping path="/welcome" />
 			<bean class="trioz.project.interceptor.Logininterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>

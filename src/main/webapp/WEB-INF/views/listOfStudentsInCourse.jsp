@@ -15,7 +15,7 @@
  ${test.level}
 </c:forEach> --%>
 		<h2>List of Students Enrolled in ${courseInfo.name}</h2>
-		<table>
+		<table border="1" style="width: 100%">
 			<tr>
 				<th>Student ID</th>
 				<th>Name</th>

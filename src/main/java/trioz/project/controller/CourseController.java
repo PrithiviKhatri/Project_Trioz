@@ -18,30 +18,43 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import trioz.project.domain.Course;
 import trioz.project.service.CourseService;
+import trioz.project.utility.SessionCheck;
 
 @Controller
-@RequestMapping({"/course"})
-@SessionAttributes({"course"})
+@RequestMapping({ "/course" })
+@SessionAttributes({ "user", "course" })
 public class CourseController {
 	@Autowired
 	private CourseService courseService;
-	
-	@RequestMapping(value={"","/list"},method = RequestMethod.GET)
-	public String listCourse(Model model){
+
+	@RequestMapping(value = { "", "/list" }, method = RequestMethod.GET)
+	public String listCourse(Model model) {
+		if (!SessionCheck.isUserExistsInSessionExists(model)) {
+			System.out.println("inside session check");
+			return "redirect:/logout";
+		}
 		List<Course> courses = courseService.getAllCourses();
-		model.addAttribute("courselist",courses);
+		model.addAttribute("courselist", courses);
 		return "courseList";
 	}
-	
-	@RequestMapping(value="/add",method = RequestMethod.GET)
-	public String addCourseForm(@ModelAttribute("newCourse") Course course, Model model){
+
+	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	public String addCourseForm(@ModelAttribute("newCourse") Course course, Model model) {
+		if (!SessionCheck.isUserExistsInSessionExists(model)) {
+			System.out.println("inside session check");
+			return "redirect:/logout";
+		}
 		return "addCourse";
 	}
-	
+
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String saveAssignment(@Valid @ModelAttribute("newCourse") Course course,
-			BindingResult bindResult, RedirectAttributes redirectAttributes, Model model) {
-		model.addAttribute("course",course);
+	public String saveAssignment(@Valid @ModelAttribute("newCourse") Course course, BindingResult bindResult,
+			RedirectAttributes redirectAttributes, Model model) {
+		if (!SessionCheck.isUserExistsInSessionExists(model)) {
+			System.out.println("inside session check");
+			return "redirect:/logout";
+		}
+		model.addAttribute("course", course);
 		if (bindResult.hasErrors()) {
 			return "addCourse";
 		}
@@ -52,19 +65,25 @@ public class CourseController {
 	}
 
 	@RequestMapping(value = "/show", method = RequestMethod.GET)
-	public String showAssignment(SessionStatus sessionStatus) {
-//		sessionStatus.setComplete();
+	public String showAssignment(Model model) {
+		if (!SessionCheck.isUserExistsInSessionExists(model)) {
+			System.out.println("inside session check");
+			return "redirect:/logout";
+		}
 		return "course";
 
 	}
-	
+
 	@RequestMapping(value = "/area", method = RequestMethod.GET)
-	public String area(@RequestParam("courseId") Long courseId,Model model) {
-		System.out.println("inside area!!");
+	public String area(@RequestParam("courseId") Long courseId, Model model) {
+		if (!SessionCheck.isUserExistsInSessionExists(model)) {
+			System.out.println("inside session check");
+			return "redirect:/logout";
+		}
 		Course course = courseService.getCourseById(courseId);
-		model.addAttribute("course",course);
+		model.addAttribute("course", course);
 		return "course";
 
 	}
-	
+
 }
